@@ -118,11 +118,14 @@
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
+          {% for patient in patients %}
           <tr>
             <th scope="row">1</th>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
+            <td>{{patient.nom}}</td>
+            <td>{{patient.prenom}}</td>
+            <td>
+              {{patient.neLe|date('d-m-Y')}}
+            </td>
             <td>
               <div class="demo-inline-spacing">
                 <button type="button" class="btn btn-icon btn-outline-primary">
@@ -134,6 +137,7 @@
               </div>
             </td>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>

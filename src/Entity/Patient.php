@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Patient
 {
     #[ORM\Id]
@@ -92,5 +93,11 @@ class Patient
         $this->ne_le = $ne_le;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function prePersiste()
+    {
+        $this->create_at = new \DateTimeImmutable();
     }
 }
