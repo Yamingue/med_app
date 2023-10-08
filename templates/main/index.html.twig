@@ -92,58 +92,18 @@
     </div>
   </div>
 </div>
+
 <div class="card">
   <div class="card-header">
-    <div class="d-flex justify-content-between">
-      <div class="input-group rounded-pill" style="width: 300px;">
-        <span class="input-group-text">
-          <i class='bx bx-search'></i>
-        </span>
-        <input type="text" class="form-control" placeholder="Chercher un patient">
-      </div>
+    <div class="d-flex justify-content-end">
       <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Ajouter un
         patient</button>
     </div>
   </div>
   <div class="card-body">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Date de naissance</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody class="table-border-bottom-0">
-          {% for patient in patients %}
-          <tr>
-            <th scope="row">1</th>
-            <td>{{patient.nom}}</td>
-            <td>{{patient.prenom}}</td>
-            <td>
-              {{patient.neLe|date('d-m-Y')}}
-            </td>
-            <td>
-              <div class="demo-inline-spacing">
-                <button type="button" class="btn btn-icon btn-outline-primary">
-                  <i class='tf-icons bx bx-edit'></i>
-                </button>
-                <button type="button" class="btn btn-icon btn-outline-danger">
-                  <i class='tf-icons bx bx-trash'></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+      {{ component('ListUserHome') }}.
   </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

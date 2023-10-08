@@ -21,6 +21,22 @@ class PatientRepository extends ServiceEntityRepository
         parent::__construct($registry, Patient::class);
     }
 
+   /**
+    * @return Patient[] Returns an array of Patient objects
+    */
+   public function search($value): array
+   {
+       return $this->createQueryBuilder('p')
+           ->where('p.nom like :val')
+           ->orWhere('p.prenom like :val')
+           ->orWhere('p.telephone like :val')
+           ->setParameter('val', '%'.$value.'%')
+           ->orderBy('p.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 //    /**
 //     * @return Patient[] Returns an array of Patient objects
 //     */
