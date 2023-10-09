@@ -34,7 +34,7 @@ class MainController extends AbstractController
         }
         return $this->render('main/index.html.twig', [
             'addForm' => $form->createView(),
-            'patients' => $patientRepository->findBy([],['id' => 'DESC'], 10),
+            'patients' => $patientRepository->findBy([],['id' => 'DESC']),
         ]);
     }
 }
