@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -15,21 +16,27 @@ class Patient
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('READ:PAIENT')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('READ:PAIENT')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('READ:PAIENT')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('READ:PAIENT')]
     private ?string $telephone = null;
 
     #[ORM\Column]
+    #[Groups('READ:PAIENT')]
     private ?\DateTimeImmutable $create_at = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups('READ:PAIENT')]
     private ?\DateTimeInterface $ne_le = null;
 
     #[ORM\OneToMany(mappedBy: 'patient', targetEntity: Consultation::class, orphanRemoval: true)]

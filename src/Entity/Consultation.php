@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ConsultationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -12,9 +13,11 @@ class Consultation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('READ:CONSULTATION')]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups('READ:CONSULTATION')]
     private ?\DateTimeImmutable $create_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'consultations')]
@@ -22,6 +25,7 @@ class Consultation
     private ?TypeConsultation $type = null;
 
     #[ORM\Column]
+    #[Groups('READ:CONSULTATION')]
     private ?bool $terminer = null;
 
     #[ORM\ManyToOne(inversedBy: 'consultations')]

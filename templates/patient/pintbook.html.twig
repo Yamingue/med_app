@@ -1,0 +1,12 @@
+{% extends "main.html.twig" %}
+
+{% block body %}
+<div {{ react_component('ImprimerConsultation',{
+    patient: patient,
+    type: type,
+    consultation:consultationData,
+    locationBack: path('patient_detail',{id: p.id })
+}) }}>
+    Loading... <i class="fas fa-cog fa-spin fa-3x"></i>
+</div>
+{% endblock %}

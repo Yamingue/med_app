@@ -68,9 +68,9 @@
 
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-2">
-                    <button type="button" class="btn btn-icon btn-sm btn-outline-primary">
+                    <a href="{{path('patient_print_consultation',{id:consultation.id})}}" class="btn btn-icon btn-sm btn-outline-primary">
                         <i class='tf-icons bx bxs-download'></i>
-                    </button>
+                    </a>
                     {% if consultation.terminer %}
                     <span class="text-success"><i class='bx bx-check-circle fs-3'></i></span>
                     {% else %}
@@ -80,7 +80,7 @@
                 <h5 class="card-title">#{{consultation.id}}</h5>
                 <p class="card-text">
                     <strong>Date:</strong> {{consultation.createAt|date("d-m-Y")}}<br>
-                    <strong>Type de Consultation :</strong> {{consultation.type}}<br>
+                    <strong>Type :</strong> {{consultation.type}}<br>
                 </p>
                 <div class="d-flex justify-content-between">
                     <div style="display:flex ;flex-direction:column; align-items:center">
@@ -96,7 +96,7 @@
                         <div>2</div>
                     </div>
                 </div>
-                <div class="d-grid">
+                <div class="d-grid mt-2">
                     <button class="btn btn-primary">Détails</button>
                 </div>
             </div>
