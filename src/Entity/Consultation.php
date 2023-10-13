@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\ConsultationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -31,6 +34,29 @@ class Consultation
     #[ORM\ManyToOne(inversedBy: 'consultations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $patient = null;
+
+    #[ORM\OneToMany(mappedBy: 'consulatation', targetEntity: Ordonance::class, orphanRemoval: true)]
+    private Collection $ordonances;
+
+    #[ORM\OneToMany(mappedBy: 'consultation', targetEntity: Exament::class, orphanRemoval: true)]
+    private Collection $examents;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups('READ:CONSULTATION')]
+    private ?string $raison = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups('READ:CONSULTATION')]
+    private ?string $prix = null;
+
+    #[ORM\OneToOne(mappedBy: 'consultation', cascade: ['persist', 'remove'])]
+    private ?ParametreViteaux $parametreViteaux = null;
+
+    public function __construct()
+    {
+        $this->ordonances = new ArrayCollection();
+        $this->examents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,6 +113,107 @@ class Consultation
     public function setPatient(?Patient $patient): static
     {
         $this->patient = $patient;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ordonance>
+     */
+    public function getOrdonances(): Collection
+    {
+        return $this->ordonances;
+    }
+
+    public function addOrdonance(Ordonance $ordonance): static
+    {
+        if (!$this->ordonances->contains($ordonance)) {
+            $this->ordonances->add($ordonance);
+            $ordonance->setConsulatation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdonance(Ordonance $ordonance): static
+    {
+        if ($this->ordonances->removeElement($ordonance)) {
+            // set the owning side to null (unless already changed)
+            if ($ordonance->getConsulatation() === $this) {
+                $ordonance->setConsulatation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Exament>
+     */
+    public function getExaments(): Collection
+    {
+        return $this->examents;
+    }
+
+    public function addExament(Exament $exament): static
+    {
+        if (!$this->examents->contains($exament)) {
+            $this->examents->add($exament);
+            $exament->setConsultation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExament(Exament $exament): static
+    {
+        if ($this->examents->removeElement($exament)) {
+            // set the owning side to null (unless already changed)
+            if ($exament->getConsultation() === $this) {
+                $exament->setConsultation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRaison(): ?string
+    {
+        return $this->raison;
+    }
+
+    public function setRaison(?string $raison): static
+    {
+        $this->raison = $raison;
+
+        return $this;
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(string $prix): static
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getParametreViteaux(): ?ParametreViteaux
+    {
+        return $this->parametreViteaux;
+    }
+
+    public function setParametreViteaux(ParametreViteaux $parametreViteaux): static
+    {
+        // set the owning side of the relation if necessary
+        if ($parametreViteaux->getConsultation() !== $this) {
+            $parametreViteaux->setConsultation($this);
+        }
+
+        $this->parametreViteaux = $parametreViteaux;
 
         return $this;
     }

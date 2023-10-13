@@ -56,8 +56,17 @@
         <h5> Nouvelle Consultation</h5>
     </div>
     <div class="card-body">
-
-        {{form(form)}}
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col">
+                {{form_row(form.type)}}
+            </div>
+            <div class="col">
+                {{form_row(form.prix)}}
+            </div>
+        </div>
+        {{form_end(form)}}
+      
     </div>
 </div>
 <div class="row row-cols-2 row-cols-md-3 g-3">
@@ -97,7 +106,7 @@
                     </div>
                 </div>
                 <div class="d-grid mt-2">
-                    <button class="btn btn-primary">Détails</button>
+                    <a href="{{ path('consultation_details',{id:consultation.id}) }}" class="btn btn-primary">Détails</a>
                 </div>
             </div>
         </div>

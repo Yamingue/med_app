@@ -1,0 +1,116 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Hello ConsultationController!{% endblock %}
+
+{% block body %}
+<div class="accordion" id="accordionWithIcon">
+    <div class="card accordion-item active mb-2">
+        <h2 class="accordion-header d-flex align-items-center">
+            <button type="button" class="accordion-button" data-bs-toggle="collapse"
+                data-bs-target="#accordionWithIcon-1" aria-expanded="true">
+                <i class="fa-solid fa-pills me-2"></i>
+                Ordonnances (2)
+            </button>
+            <button data-bs-toggle="modal" data-bs-target="#addConsultation"
+                class="btn btn-label-primary me-2">Ajouter</button>
+        </h2>
+
+        <div id="accordionWithIcon-1" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <div class="row">
+                    {% for ordonnace in ordonnaces %}
+                    <div class="col-md-4">
+                        <div class="card shadow-none bg-transparent border border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">#OR-{{ordonnace.id}}</h5>
+                                <p class="card-text">
+                                   <ol>
+                                    {% for cont in ordonnace.contentToArray %}
+                                        <li>
+                                            {{cont}}
+                                        </li>
+                                    {% endfor %}
+                                   </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item card">
+        <h2 class="accordion-header d-flex align-items-center">
+            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+                data-bs-target="#accordionWithIcon-2" aria-expanded="false">
+                <i class="fa-solid fa-microscope me-2"></i>
+                Header Option 2
+            </button>
+            <button data-bs-toggle="modal" data-bs-target="#addExam"
+                class="btn btn-label-primary me-2">Ajouter</button>
+        </h2>
+        <div id="accordionWithIcon-2" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat cake dragée ice
+                cream
+                halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies. Jelly beans candy canes
+                carrot
+                cake.
+                Fruitcake chocolate chupa chups.
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item card">
+        <h2 class="accordion-header d-flex align-items-center">
+            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+                data-bs-target="#accordionWithIcon-3" aria-expanded="false">
+                <i class="bx bx-gift me-2"></i>
+                Header Option 3
+            </button>
+        </h2>
+        <div id="accordionWithIcon-3" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                Oat cake toffee chocolate bar jujubes. Marshmallow brownie lemon drops cheesecake. Bonbon gingerbread
+                marshmallow
+                sweet jelly beans muffin. Sweet roll bear claw candy canes oat cake dragée caramels. Ice cream wafer
+                danish
+                cookie caramels muffin.
+            </div>
+        </div>
+    </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="addExam" tabindex="-1" aria-labelledby="addExamLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addExamLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+        </div>
+        <div class="modal-body">
+            {{form(formExam)}}
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal add consultation -->
+<div class="modal fade" id="addConsultation" tabindex="-1" aria-labelledby="addConsultationLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addConsultationLabel">Nouvelle Ordonnance</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                {{form(form)}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

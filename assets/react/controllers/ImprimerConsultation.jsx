@@ -13,15 +13,15 @@ export default function (props) {
     var dateJS = new Date(patient.ne_le);
 
     // Obtenir les composants de la date (jour, mois et année)
-    var jour = dateJS.getUTCDate();
-    var mois = dateJS.getUTCMonth() + 1; // Ajoutez 1 car les mois sont indexés à partir de 0
+    const jour = dateJS.getUTCDate();
+    const mois = dateJS.getUTCMonth() + 1; // Ajoutez 1 car les mois sont indexés à partir de 0
     var annee = dateJS.getUTCFullYear();
     var dateFormatee = jour.toString().padStart(2, '0') + '-' + mois.toString().padStart(2, '0') + '-' + annee;
-    console.log(consultation)
+    console.log(props)
     return <>
         <div className="d-flex justify-content-between">
         <a href={props.locationBack} className='btn btn-primary mb-2' onClick={handlePrint}>Retour</a>
-        <button className='btn btn-primary mb-2' onClick={handlePrint}>Print this out!</button>
+        <button className='btn btn-primary mb-2' onClick={handlePrint}><i class='bx bx-printer me-2' ></i> Imprimer</button>
         </div>
         <div className="card" ref={componentRef}>
             <div className="card-body">
@@ -57,11 +57,15 @@ export default function (props) {
                             <tbody>
                                 <tr>
                                     <td className="pe-3">Montant:</td>
-                                    <td>$12,110.55</td>
+                                    <td>{consultation.prix} FCFA</td>
                                 </tr>
                                 <tr>
                                     <td className="pe-3">Type:</td>
                                     <td>{type}</td>
+                                </tr>
+                                <tr>
+                                    <td className="pe-3">Motif:</td>
+                                    <td>{consultation.raison}</td>
                                 </tr>
                             </tbody>
                         </table>
