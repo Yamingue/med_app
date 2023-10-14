@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExamentRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Exament
 {
     #[ORM\Id]
@@ -63,5 +64,14 @@ class Exament
         $this->create_at = $create_at;
 
         return $this;
+    }
+    public function  contentToArray(): array
+    {
+        return explode(";", $this->content);
+    }
+
+    #[ORM\PrePersist]
+    public function prePersist()  {
+        $this->create_at = new \DateTimeImmutable();
     }
 }

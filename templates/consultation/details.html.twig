@@ -3,6 +3,31 @@
 {% block title %}Hello ConsultationController!{% endblock %}
 
 {% block body %}
+<div class="card mb-2">
+    <div class="card-header">
+        <div class="card-title">
+           <h4>Parametre Viteaux</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        {{form_start(formParam)}}
+       <div class="row">
+            <div class="col-sm-6 col-md-3">
+                {{form_row(formParam.temperature)}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                {{form_row(formParam.poids)}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                {{form_row(formParam.tails)}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                {{form_row(formParam.tension_arterielle)}}
+            </div>
+       </div>
+       {{form_end(formParam)}}
+    </div>
+</div>
 <div class="accordion" id="accordionWithIcon">
     <div class="card accordion-item active mb-2">
         <h2 class="accordion-header d-flex align-items-center">
@@ -46,19 +71,33 @@
             <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#accordionWithIcon-2" aria-expanded="false">
                 <i class="fa-solid fa-microscope me-2"></i>
-                Header Option 2
+                Examents
             </button>
             <button data-bs-toggle="modal" data-bs-target="#addExam"
                 class="btn btn-label-primary me-2">Ajouter</button>
         </h2>
         <div id="accordionWithIcon-2" class="accordion-collapse collapse">
             <div class="accordion-body">
-                Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat cake dragée ice
-                cream
-                halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies. Jelly beans candy canes
-                carrot
-                cake.
-                Fruitcake chocolate chupa chups.
+                <div class="row">
+                    {% for exament in examents %}
+                    <div class="col-md-4">
+                        <div class="card shadow-none bg-transparent border border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">#EX-{{exament.id}}</h5>
+                                <p class="card-text">
+                                   <ol>
+                                    {% for cont in exament.contentToArray %}
+                                        <li>
+                                            {{cont}}
+                                        </li>
+                                    {% endfor %}
+                                   </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
