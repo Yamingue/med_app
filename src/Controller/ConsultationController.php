@@ -6,9 +6,12 @@ use App\Entity\Consultation;
 use App\Entity\Exament;
 use App\Entity\Ordonance;
 use App\Entity\ParametreViteaux;
+use App\Entity\Patient;
+use App\Entity\Remarque;
 use App\Form\ExamentType;
 use App\Form\OrdonanceType;
 use App\Form\ParametreVitauxType;
+use App\Form\RemarqueType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,13 +73,28 @@ class ConsultationController extends AbstractController
             $this->manager->persist($signeViteaux);
             $this->manager->flush();
             $this->addFlash('success',"Signeaux viteaux enregistrer");
+            return $this->redirectToRoute('consultation_details',['id'=>$consultation->getId()]);
         }
+        $rmq = new Remarque();
+        $rmq->setConsultation($consultation);
+        $formComment= $this->createForm(RemarqueType::class, $rmq);
+        $formComment->handleRequest($request);
+        if ( $formComment->isSubmitted() && $formComment->isValid()) {
+            $this->manager->persist($rmq);
+            $this->manager->flush();
+            $this->addFlash('success','Remarque ajouter');
+            return $this->redirectToRoute('consultation_details',['id'=>$consultation->getId()]);
+        }
+        // dump(new Patient());
         return $this->render('consultation/details.html.twig', [
+            'patient' => $consultation->getPatient(),
             'ordonnaces' => $consultation->getOrdonances(),
             'examents' => $consultation->getExaments(),
+            'remarques' => $consultation->getRemarques(),
             'form' => $form->createView(),
             'formExam' => $formExam->createView(),
             'formParam' => $formParam->createView(),
+            'formComment' => $formComment->createView(),
         ]);
     }
 }

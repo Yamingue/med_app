@@ -52,10 +52,14 @@ class Consultation
     #[ORM\OneToOne(mappedBy: 'consultation', cascade: ['persist', 'remove'])]
     private ?ParametreViteaux $parametreViteaux = null;
 
+    #[ORM\OneToMany(mappedBy: 'consultation', targetEntity: Remarque::class, orphanRemoval: true)]
+    private Collection $remarques;
+
     public function __construct()
     {
         $this->ordonances = new ArrayCollection();
         $this->examents = new ArrayCollection();
+        $this->remarques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -214,6 +218,36 @@ class Consultation
         }
 
         $this->parametreViteaux = $parametreViteaux;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Remarque>
+     */
+    public function getRemarques(): Collection
+    {
+        return $this->remarques;
+    }
+
+    public function addRemarque(Remarque $remarque): static
+    {
+        if (!$this->remarques->contains($remarque)) {
+            $this->remarques->add($remarque);
+            $remarque->setConsultation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRemarque(Remarque $remarque): static
+    {
+        if ($this->remarques->removeElement($remarque)) {
+            // set the owning side to null (unless already changed)
+            if ($remarque->getConsultation() === $this) {
+                $remarque->setConsultation(null);
+            }
+        }
 
         return $this;
     }

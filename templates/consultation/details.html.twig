@@ -4,14 +4,29 @@
 
 {% block body %}
 <div class="card mb-2">
+    <div class="card-body">
+        <div class="card-title">
+            <h4>
+                Information du Patient
+            </h4>
+        </div>
+        <div class="card-text">
+            <b>Nom :</b> {{patient.nom}} <br>
+            <b>Prenom :</b> {{patient.prenom}} <br>
+            <b>Phone :</b> {{patient.telephone}} <br>
+            <b>Date de naissance :</b> {{patient.neLe |date("d/m/Y")}} <br>
+        </div>
+    </div>
+</div>
+<div class="card mb-2">
     <div class="card-header">
         <div class="card-title">
-           <h4>Parametre Viteaux</h4>
+            <h4>Parametre Viteaux</h4>
         </div>
     </div>
     <div class="card-body">
         {{form_start(formParam)}}
-       <div class="row">
+        <div class="row">
             <div class="col-sm-6 col-md-3">
                 {{form_row(formParam.temperature)}}
             </div>
@@ -24,8 +39,8 @@
             <div class="col-sm-6 col-md-3">
                 {{form_row(formParam.tension_arterielle)}}
             </div>
-       </div>
-       {{form_end(formParam)}}
+        </div>
+        {{form_end(formParam)}}
     </div>
 </div>
 <div class="accordion" id="accordionWithIcon">
@@ -49,13 +64,13 @@
                             <div class="card-body">
                                 <h5 class="card-title">#OR-{{ordonnace.id}}</h5>
                                 <p class="card-text">
-                                   <ol>
+                                <ol>
                                     {% for cont in ordonnace.contentToArray %}
-                                        <li>
-                                            {{cont}}
-                                        </li>
+                                    <li>
+                                        {{cont}}
+                                    </li>
                                     {% endfor %}
-                                   </ol>
+                                </ol>
                                 </p>
                             </div>
                         </div>
@@ -73,8 +88,7 @@
                 <i class="fa-solid fa-microscope me-2"></i>
                 Examents
             </button>
-            <button data-bs-toggle="modal" data-bs-target="#addExam"
-                class="btn btn-label-primary me-2">Ajouter</button>
+            <button data-bs-toggle="modal" data-bs-target="#addExam" class="btn btn-label-primary me-2">Ajouter</button>
         </h2>
         <div id="accordionWithIcon-2" class="accordion-collapse collapse">
             <div class="accordion-body">
@@ -85,13 +99,13 @@
                             <div class="card-body">
                                 <h5 class="card-title">#EX-{{exament.id}}</h5>
                                 <p class="card-text">
-                                   <ol>
+                                <ol>
                                     {% for cont in exament.contentToArray %}
-                                        <li>
-                                            {{cont}}
-                                        </li>
+                                    <li>
+                                        {{cont}}
+                                    </li>
                                     {% endfor %}
-                                   </ol>
+                                </ol>
                                 </p>
                             </div>
                         </div>
@@ -107,36 +121,55 @@
             <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#accordionWithIcon-3" aria-expanded="false">
                 <i class="bx bx-gift me-2"></i>
-                Header Option 3
+                Remarque et commentaire
             </button>
+            <button data-bs-toggle="modal" data-bs-target="#remarqueModal" class="btn btn-label-primary me-2">Ajouter</button>
         </h2>
         <div id="accordionWithIcon-3" class="accordion-collapse collapse">
             <div class="accordion-body">
-                Oat cake toffee chocolate bar jujubes. Marshmallow brownie lemon drops cheesecake. Bonbon gingerbread
-                marshmallow
-                sweet jelly beans muffin. Sweet roll bear claw candy canes oat cake dragée caramels. Ice cream wafer
-                danish
-                cookie caramels muffin.
+                {% for rem in remarques %}
+                <div class="card border border-dark mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{rem.titre}}</h5>
+                        <p class="card-text text-dark">
+                            {{rem.description}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="addExam" tabindex="-1" aria-labelledby="addExamLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- ModalRemarque -->
+<div class="modal fade" id="remarqueModal" tabindex="-1" aria-labelledby="remarqueModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addExamLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            </button>
+          <h1 class="modal-title fs-5" id="remarqueModalLabel">Nouvelle remarque ou commentaire</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            {{form(formExam)}}
+         {{form(formComment)}}
         </div>
       </div>
     </div>
   </div>
+<!-- Modal -->
+<div class="modal fade" id="addExam" tabindex="-1" aria-labelledby="addExamLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExamLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                {{form(formExam)}}
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal add consultation -->
 <div class="modal fade" id="addConsultation" tabindex="-1" aria-labelledby="addConsultationLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

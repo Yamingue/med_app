@@ -1,0 +1,96 @@
+<div{{ attributes }}>
+    <a href="{{path('laboraratoire_index')}}" class="btn btn-sm btn-label-primary mb-2">Actualiser</a>
+    <div class="input-group rounded-pill mb-2">
+        <span class="input-group-text">
+            <i class='bx bx-search'></i>
+        </span>
+        <input type="text" data-model="examId" class="form-control" placeholder="Entrer l'identifiant d'un exament">
+    </div>
+
+    {% if examId > 0 and ( this.exament is not null ) %}
+    <div class="card  bord">
+        <div class="card-body">
+            {% if this.exament.etat == true %}
+            <div>
+                <button style="float: right;" type="button" class="btn rounded-pill btn-icon btn-success">
+                    <i class="fa-regular fa-circle-check fa-2xl"></i>
+                </button>
+            </div>
+            {% endif %}
+
+            <h5> Consultation: <b>#{{this.exament.consultation.id}}</b></h5>
+            {% set patient = this.exament.consultation.patient %}
+            Nom: {{patient.nom}} <br>
+            Preom: {{patient.prenom}} <br>
+            Date de naissance: {{patient.neLe|date("d/m/Y")}} <br>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">#EX-{{this.exament.id}}</h5>
+            <p class="card-text">
+            <ol>
+                {% for cont in this.exament.contentToArray %}
+                <li>
+                    {{cont}}
+                </li>
+                {% endfor %}
+            </ol>
+            </p>
+        </div>
+        {% if this.exament.etat != true %}
+        <div class="card-footer">
+            <div class="d-grid gap-2 mx-auto">
+                <a class="btn btn-primary" href="{{path('laboraratoire_exam_done',{id:this.exament.id})}}">
+                    Terminer
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="row">
+        {% for exament in this.examents %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card border border-primary">
+                <div class="card-body">
+                    {% if exament.etat == true %}
+                    <div>
+                        <button style="float: right;" type="button" class="btn rounded-pill btn-icon btn-success">
+                            <i class="fa-regular fa-circle-check fa-2xl"></i>
+                        </button>
+                    </div>
+                    {% endif %}
+
+                    <h5> Consultation: <b>#{{exament.consultation.id}}</b></h5>
+                    {% set patient = exament.consultation.patient %}
+                    Nom: {{patient.nom}} <br>
+                    Preom: {{patient.prenom}} <br>
+                    Date de naissance: {{patient.neLe|date("d/m/Y")}} <br>
+
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">#EX-{{exament.id}}</h5>
+                    <p class="card-text">
+                    <ol>
+                        {% for cont in exament.contentToArray %}
+                        <li>
+                            {{cont}}
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    </p>
+                </div>
+                {% if exament.etat != true %}
+                <div class="card-footer">
+                    <div class="d-grid gap-2 mx-auto">
+                        <a class="btn btn-primary" href="{{path('laboraratoire_exam_done',{id:exament.id})}}">
+                            Terminer
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    </div>

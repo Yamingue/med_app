@@ -25,6 +25,9 @@ class Exament
     #[ORM\Column]
     private ?\DateTimeImmutable $create_at = null;
 
+    #[ORM\Column]
+    private ?bool $etat = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,5 +76,18 @@ class Exament
     #[ORM\PrePersist]
     public function prePersist()  {
         $this->create_at = new \DateTimeImmutable();
+        $this->etat = false;
+    }
+
+    public function isEtat(): ?bool
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(bool $etat): static
+    {
+        $this->etat = $etat;
+
+        return $this;
     }
 }

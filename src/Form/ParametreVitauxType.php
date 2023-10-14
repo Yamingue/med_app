@@ -13,9 +13,15 @@ class ParametreVitauxType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('temperature')
-            ->add('poids')
-            ->add('tails')
+            ->add('temperature', options:[
+                'label'=>'Temperature (°C)'
+            ])
+            ->add('poids',options:[
+                'label'=>'Poids (Kg)'
+            ])
+            ->add('tails',options:[
+                'label'=>'Tails (cm)'
+            ])
             ->add('tension_arterielle')
             ->add('Enregistrer', SubmitType::class)
         ;

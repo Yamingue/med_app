@@ -21,20 +21,20 @@ class ExamentRepository extends ServiceEntityRepository
         parent::__construct($registry, Exament::class);
     }
 
-//    /**
-//     * @return Exament[] Returns an array of Exament objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Exament[] Returns an array of Exament objects
+    */
+   public function findNotFinished(): array
+   {
+       return $this->createQueryBuilder('e')
+           ->andWhere('e.etat = :val')
+           ->setParameter('val', false)
+           ->orderBy('e.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Exament
 //    {
