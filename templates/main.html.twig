@@ -109,10 +109,10 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Page -->
-                    <li class="menu-item active">
-                        <a href="index.html" class="menu-link">
+                    <li class="menu-item {% if 'app_main' == app.request.get('_route') %}active{% endif %}">
+                        <a href="{{path('app_main')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div class="text-truncate" data-i18n="Page 1">Page 1</div>
+                            <div class="text-truncate" data-i18n="Page 1">Accueille</div>
                         </a>
                     </li>
                     <li class="menu-item">
@@ -122,7 +122,7 @@
                         </a>
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <li class="menu-item">
+                    <li class="menu-item {% if 'app_user' in app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_user_index')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i>
                             <div class="text-truncate" data-i18n="Page 2">Utilisateurs</div>
@@ -130,9 +130,10 @@
                     </li>
                     {% endif %}
                     {% if is_granted('ROLE_LABORATOIRE') %}
-                    <li class="menu-item">
-                        <a href="{{path('app_user_index')}}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
+                    <li class="menu-item {% if 'laboraratoire' in app.request.get('_route') %}active{% endif %}">
+                        <a href="{{path('laboraratoire_index')}}" class="menu-link">
+                            {# <i class="menu-icon tf-icons bx bx-user"></i> #}
+                            <i class="menu-icon tf-icons fa-solid fa-microscope me-2"></i>
                             <div class="text-truncate" data-i18n="Page 2">Examents</div>
                         </a>
                     </li>
@@ -218,7 +219,6 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-
                     <div class="container-xxl flex-grow-1 container-p-y">
                         {% block body %}
 

@@ -1,0 +1,54 @@
+<div {{ attributes }}>
+    <label class="form-label" for="basic-default-password12">Entrer l'identifiant d'un exament</label>
+    <div class="input-group mb-2">
+        <span class="input-group-text">
+            <i class='bx bx-search'></i>
+        </span>
+        <input type="text" data-model="consultId" class="form-control" placeholder="Entrer l'identifiant d'un exament">
+    </div>
+    {% if this.consultId > 0 %}
+    {% if this.consultation %}
+    <div class="card">
+
+        <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+                <a href="{{path('patient_print_consultation',{id:this.consultation.id})}}"
+                    class="btn btn-icon btn-sm btn-outline-primary">
+                    <i class='tf-icons bx bxs-download'></i>
+                </a>
+                {% if this.consultation.terminer %}
+                <span class="text-success"><i class='bx bx-check-circle fs-3'></i></span>
+                {% else %}
+                <span class="text-warning"><i class='bx bx-time fs-3'></i></span>
+                {% endif %}
+            </div>
+            <h5 class="card-title">#{{this.consultation.id}}</h5>
+            <p class="card-text">
+                <strong>Date:</strong> {{this.consultation.createAt|date("d-m-Y")}}<br>
+                <strong>Type :</strong> {{this.consultation.type}}<br>
+            </p>
+            <div class="d-flex justify-content-between">
+                <div style="display:flex ;flex-direction:column; align-items:center">
+                    <strong>
+                        Examens
+                    </strong>
+                    <div>2</div>
+                </div>
+                <div style="display:flex ;flex-direction:column; align-items:center">
+                    <strong>
+                        Ordonnances
+                    </strong>
+                    <div>2</div>
+                </div>
+            </div>
+            <div class="d-grid mt-2">
+                <a href="{{ path('consultation_details',{id:this.consultation.id}) }}" class="btn btn-primary">Détails</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    Consultation <b>#{{this.consultId}}</b> introuvable
+    {% endif %}
+
+    {% endif %}
+</div>
