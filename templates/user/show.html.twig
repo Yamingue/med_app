@@ -1,0 +1,45 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}{{user.username}}{% endblock %}
+
+{% block body %}
+
+<div class="d-flex justify-content-between">
+    <a class="btn btn-sm btn-primary" href="{{ path('app_user_index') }}">Retour</a>
+    <a class="btn btn-sm btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+</div>
+<div class="card mt-2">
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Username</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Roles</th>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ user.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Prenom</th>
+                    <td>{{ user.prenom }}</td>
+                </tr>
+                <tr>
+                    <th>Genre</th>
+                    <td>{{ user.genre }}</td>
+                </tr>
+                <tr>
+                    <th>Civilite</th>
+                    <td>{{ user.civilite }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{ include('user/_delete_form.html.twig') }}
+{% endblock %}

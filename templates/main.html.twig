@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/assets/vendor/libs/sweetalert2/sweetalert2.css" />
     <script src="/assets/vendor/libs/sweetalert2/sweetalert2.js"> </script>
     <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" /> 
+    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
     <!-- <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css" /> -->
     {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
@@ -52,7 +52,7 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="/" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -121,6 +121,29 @@
                             <div class="text-truncate" data-i18n="Page 2">Page 2</div>
                         </a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="menu-item">
+                        <a href="{{path('app_user_index')}}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-user"></i>
+                            <div class="text-truncate" data-i18n="Page 2">Utilisateurs</div>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_LABORATOIRE') %}
+                    <li class="menu-item">
+                        <a href="{{path('app_user_index')}}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-user"></i>
+                            <div class="text-truncate" data-i18n="Page 2">Examents</div>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li class="menu-item">
+                        <a href="{{path('app_user_index')}}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-user"></i>
+                            <div class="text-truncate" data-i18n="Page 2">Consultations</div>
+                        </a>
+                    </li>
+
                 </ul>
             </aside>
             <!-- / Menu -->

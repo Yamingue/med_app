@@ -1,0 +1,25 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css " />
+<script src="/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="/assets/vendor/libs/select2/select2.js"></script>
+{% endblock %}
+{% block body %}
+<div class="d-flex justify-content-between">
+    <a class="btn btn-sm btn-primary" href="{{ path('app_user_index') }}">Retour</a>
+    {{ include('user/_delete_form.html.twig') }}
+</div>
+<div class="card mt-2">
+    <div class="card-body">
+        {{ include('user/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(".select2").select2();
+</script>
+
+{% endblock %}
