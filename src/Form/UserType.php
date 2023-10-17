@@ -41,7 +41,8 @@ class UserType extends AbstractType
                     'ADMINISTRATEUR' => 'ROLE_ADMIN',
                     'LABORATOIRE' => 'ROLE_LABORATOIRE',
                     'CONSULTATION' => 'ROLE_CONSULTATION',
-                    'ACCUEILLE' => 'ROLE_USER',
+                    'UTILISATEUR' => 'ROLE_USER',
+                    'RECEPTION' => 'ROLE_RECEPTION',
                 ],
                 'attr' => [
                     'class' => 'select2'

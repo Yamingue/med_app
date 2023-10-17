@@ -1,5 +1,5 @@
 <div {{ attributes }}>
-    <label class="form-label" for="basic-default-password12">Entrer l'identifiant d'un exament</label>
+    <label class="form-label" for="basic-default-password12">Entrer l'identifiant d'une consultation</label>
     <div class="input-group mb-2">
         <span class="input-group-text">
             <i class='bx bx-search'></i>
@@ -26,19 +26,20 @@
             <p class="card-text">
                 <strong>Date:</strong> {{this.consultation.createAt|date("d-m-Y")}}<br>
                 <strong>Type :</strong> {{this.consultation.type}}<br>
+                <strong>Motif :</strong> <span class="text dark">{{this.consultation.raison}}</span><br>
             </p>
             <div class="d-flex justify-content-between">
                 <div style="display:flex ;flex-direction:column; align-items:center">
                     <strong>
                         Examens
                     </strong>
-                    <div>2</div>
+                    <div>{{this.consultation.examents|length}}</div>
                 </div>
                 <div style="display:flex ;flex-direction:column; align-items:center">
                     <strong>
                         Ordonnances
                     </strong>
-                    <div>2</div>
+                    <div>{{this.consultation.ordonances|length}}</div>
                 </div>
             </div>
             <div class="d-grid mt-2">

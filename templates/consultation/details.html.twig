@@ -49,10 +49,12 @@
             <button type="button" class="accordion-button" data-bs-toggle="collapse"
                 data-bs-target="#accordionWithIcon-1" aria-expanded="true">
                 <i class="fa-solid fa-pills me-2"></i>
-                Ordonnances (2)
+                Ordonnances ({{ordonnaces|length}})
             </button>
+            {% if is_granted('ROLE_CONSULTATION') %}
             <button data-bs-toggle="modal" data-bs-target="#addConsultation"
                 class="btn btn-label-primary me-2">Ajouter</button>
+            {% endif %}
         </h2>
 
         <div id="accordionWithIcon-1" class="accordion-collapse collapse show">
@@ -86,9 +88,11 @@
             <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#accordionWithIcon-2" aria-expanded="false">
                 <i class="fa-solid fa-microscope me-2"></i>
-                Examents
+                Examents ({{examents|length}})
             </button>
+            {% if is_granted('ROLE_CONSULTATION') %}
             <button data-bs-toggle="modal" data-bs-target="#addExam" class="btn btn-label-primary me-2">Ajouter</button>
+            {% endif %}
         </h2>
         <div id="accordionWithIcon-2" class="accordion-collapse collapse">
             <div class="accordion-body">
@@ -123,7 +127,9 @@
                 <i class="bx bx-gift me-2"></i>
                 Remarque et commentaire
             </button>
+            {% if is_granted('ROLE_CONSULTATION') %}
             <button data-bs-toggle="modal" data-bs-target="#remarqueModal" class="btn btn-label-primary me-2">Ajouter</button>
+            {% endif %}
         </h2>
         <div id="accordionWithIcon-3" class="accordion-collapse collapse">
             <div class="accordion-body">

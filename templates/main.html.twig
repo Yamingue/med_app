@@ -108,6 +108,7 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
+                    {% if is_granted('ROLE_RECEPTION') %}
                     <!-- Page -->
                     <li class="menu-item {% if 'app_main' == app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_main')}}" class="menu-link">
@@ -115,12 +116,13 @@
                             <div class="text-truncate" data-i18n="Page 1">Accueille</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    {% endif %}
+                    {# <li class="menu-item">
                         <a href="page-2.html" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-detail"></i>
                             <div class="text-truncate" data-i18n="Page 2">Page 2</div>
                         </a>
-                    </li>
+                    </li> #}
                     {% if is_granted('ROLE_ADMIN') %}
                     <li class="menu-item {% if 'app_user' in app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_user_index')}}" class="menu-link">
@@ -138,12 +140,12 @@
                         </a>
                     </li>
                     {% endif %}
-                    <li class="menu-item">
+                    {# <li class="menu-item">
                         <a href="{{path('app_user_index')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i>
                             <div class="text-truncate" data-i18n="Page 2">Consultations</div>
                         </a>
-                    </li>
+                    </li> #}
 
                 </ul>
             </aside>
