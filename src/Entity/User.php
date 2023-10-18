@@ -178,4 +178,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return 'Utilisateur';
     }
+
+    public function getInitial() : string
+    {
+        $arr=str_split($this->username);
+        return $arr[0].$arr[1];
+    }
 }
