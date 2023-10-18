@@ -1,0 +1,40 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+<div class="card mb-4">
+    <h5 class="card-header">Information personnel</h5>
+    <hr class="my-0">
+    <div class="card-body">
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col-12">
+                {{form_row(form.username)}}
+            </div>
+            <div class="col-sm-6">
+                {{form_row(form.nom)}}
+            </div>
+            <div class="col-sm-6">
+                {{form_row(form.prenom)}}
+            </div>
+            <div class="col-sm-6">
+                {{form_row(form.genre)}}
+            </div>
+            <div class="col-sm-6">
+                {{form_row(form.civilite)}}
+            </div>
+        </div>
+        {{form_end(form)}}
+    </div>
+    <!-- /Account -->
+</div>
+<div class="card mb-4">
+    <h5 class="card-header">Mot de passe</h5>
+    <hr class="my-0">
+    <div class="card-body">
+        {{form(formPass)}}
+    </div>
+    <!-- /Account -->
+</div>
+{% endblock %}
