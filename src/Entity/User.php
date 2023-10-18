@@ -158,4 +158,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getRole(): string
+    {
+        if (in_array('ROLE_ADMIN',$this->roles)) {
+            return 'Administrateur';
+        }
+        if (in_array('ROLE_CONSULTATION',$this->roles)) {
+            return 'Consultation';
+        }
+
+        if (in_array('ROLE_LABORATOIRE',$this->roles)) {
+            return 'LABORATOIRE';
+        }
+
+        if (in_array('ROLE_RECEPTION',$this->roles)) {
+            return 'Acceuille';
+        }
+
+        return 'Utilisateur';
+    }
 }
