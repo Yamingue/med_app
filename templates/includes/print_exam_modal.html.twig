@@ -1,0 +1,22 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#prindExamModal">
+    {% trans %}
+    Imprimer
+    {% endtrans %}
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="prindExamModal" tabindex="-1" aria-labelledby="prindExamModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="prindExamModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div {{ react_component('PrintExam',{examId: exament.id,data: exament.itemsToArray|json_encode})}}>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,12 +4,12 @@ namespace App\Twig\Components;
 
 use App\Entity\Exament;
 use App\Repository\ExamentRepository;
-use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 
 #[AsLiveComponent()]
-final class ExamentLabo
+final class ChercheExam
 {
     use DefaultActionTrait;
 
@@ -27,6 +27,7 @@ final class ExamentLabo
 
     public function getExaments()
     {
-        return $this->examentRepository->findBy(['etat' => 0, 'is_payed' => 1], limit: 5, orderBy: ['id' => 'DESC',]);
+
+        return $this->examentRepository->findBy(['etat' => 0, 'is_payed' => 0], limit: 5, orderBy: ['id' => 'DESC',]);
     }
 }

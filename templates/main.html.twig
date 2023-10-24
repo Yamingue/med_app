@@ -113,7 +113,9 @@
                     <li class="menu-item {% if 'app_main' == app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_main')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div class="text-truncate" data-i18n="Page 1">Accueille</div>
+                            <div class="text-truncate" data-i18n="Page 1">
+                                {% trans %}Accueille{% endtrans %}
+                            </div>
                         </a>
                     </li>
                     {% endif %}
@@ -127,16 +129,40 @@
                     <li class="menu-item {% if 'app_user' in app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_user_index')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div class="text-truncate" data-i18n="Page 2">Utilisateurs</div>
+                            <div class="text-truncate">
+                                {% trans %}Utilisateurs{% endtrans %}
+                            </div>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="menu-item {% if 'app_exam_item' in app.request.get('_route') %}active{% endif %}">
+                        <a href="{{path('app_exam_item_index')}}" class="menu-link">
+                            {# <i class='menu-icon tf-icons  bx bxs-capsule'></i> #}
+                            <i class="menu-icon tf-icons fa-solid fa-suitcase-medical"></i>
+                            <div class="text-truncate">
+                                {% trans %}Examens disponible{% endtrans %}
+                            </div>
+                        </a>
+                    </li>
+                    <li
+                        class="menu-item {% if 'app_admin_medicament_controlleur' in app.request.get('_route') %}active{% endif %}">
+                        <a href="{{path('app_admin_medicament_controlleur_index')}}" class="menu-link">
+                            <i class='menu-icon tf-icons  bx bxs-capsule'></i>
+                            {# <i class="menu-icon tf-icons fa-solid fa-suitcase-medical"></i> #}
+                            <div class="text-truncate">
+                                {% trans %}Medicaments{% endtrans %}
+                            </div>
                         </a>
                     </li>
                     {% endif %}
                     {% if is_granted('ROLE_LABORATOIRE') %}
                     <li class="menu-item {% if 'laboraratoire' in app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('laboraratoire_index')}}" class="menu-link">
-                            {# <i class="menu-icon tf-icons bx bx-user"></i> #}
                             <i class="menu-icon tf-icons fa-solid fa-microscope me-2"></i>
-                            <div class="text-truncate" data-i18n="Page 2">Examents</div>
+                            <div class="text-truncate" data-i18n="Page 2">
+                                {% trans %}Examents{% endtrans %}
+                            </div>
                         </a>
                     </li>
                     {% endif %}
@@ -201,7 +227,7 @@
                                     <li>
                                         <a class="dropdown-item" href="{{path('app_profile')}}">
                                             <i class="bx bx-user me-2"></i>
-                                            <span class="align-middle">Mon Profil</span>
+                                            <span class="align-middle">{% trans %}Mon Profil{% endtrans %}</span>
                                         </a>
                                     </li>
                                     <li>
@@ -210,7 +236,7 @@
                                     <li>
                                         <a class="dropdown-item" href="{{path('app_logout')}}">
                                             <i class="bx bx-power-off me-2"></i>
-                                            <span class="align-middle">Log Out</span>
+                                            <span class="align-middle">{% trans %}Log Out{% endtrans %}</span>
                                         </a>
                                     </li>
                                 </ul>

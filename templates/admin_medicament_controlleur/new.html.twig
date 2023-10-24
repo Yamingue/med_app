@@ -1,0 +1,22 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}New Medicament{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-6 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-sm btn-primary" href="{{ path('app_admin_medicament_controlleur_index') }}">
+                    {% trans %}Retour a la list{% endtrans %}
+                </a>
+            </div>
+            <div class="card-body">
+                {{ include('admin_medicament_controlleur/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,101 @@
+<div {{ attributes }}>
+    <label class="form-label" for="basic-default-password12">Entrer l'identifiant d'un exament</label>
+    <div class="input-group mb-2">
+        <span class="input-group-text">
+            <i class='bx bx-search'></i>
+        </span>
+        <input type="text" data-model="examId" class="form-control" placeholder="Entrer l'identifiant d'un exament">
+    </div>
+    {% if this.exament %}
+    {# {{ dump() }} #}
+    <div class="card text-bg-dark mb-3">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <strong>Status:
+                    {% if this.exament.etat %}
+                    <span class="text-success">Traiter</span>
+                    {% else %}
+                    <span class="text-warning">Non traiter</span>
+                    {% endif %}
+                </strong>
+                <strong>Etat:
+                    {% if this.exament.isPayed %}
+                    <span class="text-success">Payer</span>
+                    {% else %}
+                    <span class="text-warning">Non payer</span>
+                    {% endif %}
+                </strong>
+            </div>
+            <strong>#EX-1</strong>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+            <ol>
+                {% set total = 0 %}
+                {% for item in this.exament.items %}
+                {% set total = total + item.prix %}
+                <li>
+                    {{item.nom}} ({{item.prix}} XFA)
+                </li>
+                {% endfor %}
+            </ol>
+            <strong>ToTal: {{total|number_format(0,'.',' ')}} XFA</strong>
+            </p>
+            <div class="d-grid gap-2 col-6 mx-auto" style="width: 100%;">
+                {% if is_granted('ROLE_RECEPTION') and (not this.exament.isPayed) %}
+                <a href="{{path('app_main_paye_xam',{id:this.exament.id})}}" class="btn btn-success btn-sm">
+                    {% trans %}
+                    Payer
+                    {% endtrans %}
+                </a>
+                {% endif %}
+                <a href="{{path('print_exam',{id:this.exament.id})}}" class="btn btn-primary btn-sm">
+                    {% trans %}
+                    Imprimer
+                    {% endtrans %}
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% for exament in this.examents %}
+        {% set total = 0 %}
+        <div class="col mb-2">
+            <div class="card shadow-none bg-transparent border border-primary">
+                <div class="card-body">
+                    <h5 class="card-title">#EX-{{exament.id}}</h5>
+                    <p class="card-text">
+                    <ol>
+                        {% for item in exament.items %}
+                        {% set total = total + item.prix %}
+                        <li>
+                            {{item.nom}} ({{item.prix}} XFA)
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    <h5>ToTal: {{total|number_format(0,'.',' ')}} XFA</h5>
+                    </p>
+                    <div class="d-grid gap-2 col-6 mx-auto" style="width: 100%;">
+                        {% if is_granted('ROLE_RECEPTION') and (not exament.isPayed) %}
+                        <a href="{{path('app_main_paye_xam',{id:exament.id})}}" class="btn btn-success btn-sm">
+                            {% trans %}
+                            Payer
+                            {% endtrans %}
+                        </a>
+                        {% endif %}
+                        <a href="{{path('print_exam',{id:exament.id})}}" class="btn btn-primary btn-sm">
+                            {% trans %}
+                            Imprimer
+                            {% endtrans %}
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

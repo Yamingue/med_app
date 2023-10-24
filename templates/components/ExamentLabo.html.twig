@@ -21,16 +21,16 @@
             <h5> Consultation: <b>#{{this.exament.consultation.id}}</b></h5>
             {% set patient = this.exament.consultation.patient %}
             Nom: {{patient.nom}} <br>
-            Preom: {{patient.prenom}} <br>
+            Prenom: {{patient.prenom}} <br>
             Date de naissance: {{patient.neLe|date("d/m/Y")}} <br>
         </div>
         <div class="card-body">
             <h5 class="card-title">#EX-{{this.exament.id}}</h5>
             <p class="card-text">
             <ol>
-                {% for cont in this.exament.contentToArray %}
+                {% for item in this.exament.items %}
                 <li>
-                    {{cont}}
+                    {{item.nom}}
                 </li>
                 {% endfor %}
             </ol>
@@ -71,9 +71,9 @@
                     <h5 class="card-title">#EX-{{exament.id}}</h5>
                     <p class="card-text">
                     <ol>
-                        {% for cont in exament.contentToArray %}
+                        {% for item in exament.items %}
                         <li>
-                            {{cont}}
+                            {{item.nom}}
                         </li>
                         {% endfor %}
                     </ol>

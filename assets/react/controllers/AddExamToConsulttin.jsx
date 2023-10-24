@@ -76,7 +76,7 @@ export default function ({ id = -1, url }) {
                         <button onClick={e => {
                             addExam(exam)
                         }} className="btn btn-success btn-icon rounded-pill">
-                            <i class='bx bxs-plus-circle' ></i>
+                            <i className='bx bxs-plus-circle' ></i>
                         </button>
                     </div>
                 </div>

@@ -30,6 +30,12 @@ class Exament
     #[ORM\ManyToMany(targetEntity: ExamItem::class, inversedBy: 'examents')]
     private Collection $items;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $is_payed = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $paye_at = null;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -69,6 +75,7 @@ class Exament
     {
         $this->create_at = new \DateTimeImmutable();
         $this->etat = false;
+        $this->is_payed = false;
     }
 
     public function isEtat(): ?bool
@@ -103,6 +110,45 @@ class Exament
     public function removeItem(ExamItem $item): static
     {
         $this->items->removeElement($item);
+
+        return $this;
+    }
+
+    public function isIsPayed(): ?bool
+    {
+        return $this->is_payed;
+    }
+
+    public function setIsPayed(?bool $is_payed): static
+    {
+        $this->is_payed = $is_payed;
+
+        return $this;
+    }
+
+    public function itemsToArray(): array
+    {
+        $items = [];
+        foreach ($this->items as $it) {
+            $item = [
+                'nom' => $it->getNom(),
+                'prix' => $it->getPrix(),
+                'id' => $it->getId(),
+            ];
+            $items[] = $item;
+        }
+
+        return $items;
+    }
+
+    public function getPayeAt(): ?\DateTimeImmutable
+    {
+        return $this->paye_at;
+    }
+
+    public function setPayeAt(?\DateTimeImmutable $paye_at): static
+    {
+        $this->paye_at = $paye_at;
 
         return $this;
     }

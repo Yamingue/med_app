@@ -1,0 +1,9 @@
+{% extends "main.html.twig" %}
+
+{% block body %}
+<a href="{{referer|default('/main')}}" class="btn btn-sm btn-primary mb-2">
+    Retour
+</a>
+<div {{ react_component('PrintExam',{examId: exament.id,data: exament.itemsToArray|json_encode})}}>
+</div>
+{% endblock %}

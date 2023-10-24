@@ -73,36 +73,43 @@
   </div>
 </div>
 
-{{ component('ChercheConsultation') }}
+<div class="row">
+  <div class="col-6">
+    {{ component('ChercheConsultation') }}
 
-<div class="card mt-2">
-  {% if is_granted('ROLE_RECEPTION') %}
-  <div class="card-header">
-    <div class="d-flex justify-content-end">
-      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Ajouter un
-        patient</button>
-    </div>
-  </div>
-  {% endif %}
-  <div class="card-body">
-    {{ component('ListUserHome') }}.
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nouveau patient</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
+    <div class="card mt-2">
+      {% if is_granted('ROLE_RECEPTION') %}
+      <div class="card-header">
+        <div class="d-flex justify-content-end">
+          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Ajouter un
+            patient</button>
+        </div>
       </div>
-      <div class="modal-body">
-        {{form(addForm)}}
+      {% endif %}
+      <div class="card-body">
+        {{ component('ListUserHome') }}.
       </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nouveau patient</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div class="modal-body">
+            {{form(addForm)}}
+          </div>
+        </div>
+
+      </div>
+    </div>
 
   </div>
+  <div class="col-6">
+    {{ component('ChercheExam') }}
+  </div>
 </div>
-
 {% endblock %}

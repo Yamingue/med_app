@@ -103,8 +103,25 @@
                     {% for exament in examents %}
                     {% set total = 0 %}
                     <div class="col-md-4">
-                        <div class="card shadow-none bg-transparent border border-primary">
+                        <div
+                            class="card shadow-none bg-transparent border {% if exament.isPayed %}border-success {% else %} border-success{% endif %}">
                             <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <strong>Status:
+                                        {% if exament.etat %}
+                                        <span class="text-success">Traiter</span>
+                                        {% else %}
+                                        <span class="text-warning">Non traiter</span>
+                                        {% endif %}
+                                    </strong>
+                                    <strong>Etat:
+                                        {% if exament.isPayed %}
+                                        <span class="text-success">Payer</span>
+                                        {% else %}
+                                        <span class="text-warning">Non payer</span>
+                                        {% endif %}
+                                    </strong>
+                                </div>
                                 <h5 class="card-title">#EX-{{exament.id}}</h5>
                                 <p class="card-text">
                                 <ol>
@@ -117,11 +134,21 @@
                                 </ol>
                                 <h5>ToTal: {{total}} XFA</h5>
                                 </p>
-                                {% if is_granted('ROLE_RECEPTION') %}
                                 <div class="d-grid gap-2 col-6 mx-auto" style="width: 100%;">
-                                    <button class="btn btn-success btn-sm" type="button">Payer</button>
+                                    {% if is_granted('ROLE_RECEPTION') and (not exament.isPayed) %}
+                                    <a href="{{path('app_main_paye_xam',{id:exament.id})}}"
+                                        class="btn btn-success btn-sm">
+                                        {% trans %}
+                                        Payer
+                                        {% endtrans %}
+                                    </a>
+                                    {% endif %}
+                                    <a href="{{path('print_exam',{id:exament.id})}}" class="btn btn-primary btn-sm">
+                                        {% trans %}
+                                        Imprimer
+                                        {% endtrans %}
+                                    </a>
                                 </div>
-                                {% endif %}
 
                             </div>
                         </div>
