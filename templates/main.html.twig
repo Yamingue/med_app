@@ -108,7 +108,7 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                    {% if is_granted('ROLE_RECEPTION') %}
+                    {% if is_granted('ROLE_RECEPTION') or is_granted('ROLE_CONSULTATION') %}
                     <!-- Page -->
                     <li class="menu-item {% if 'app_main' == app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_main')}}" class="menu-link">
@@ -170,7 +170,8 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <span class="avatar-initial rounded-circle bg-danger">{{app.user.getInitial}}</span>
+                                        <span
+                                            class="avatar-initial rounded-circle bg-danger">{{app.user.getInitial}}</span>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -183,7 +184,8 @@
                                                             class="w-px-40 h-auto rounded-circle" />
                                                     </div> #}
                                                     <div class="avatar avatar-online">
-                                                        <span class="avatar-initial rounded-circle bg-danger">{{app.user.getInitial}}</span>
+                                                        <span
+                                                            class="avatar-initial rounded-circle bg-danger">{{app.user.getInitial}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">

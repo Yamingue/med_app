@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ExamentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,14 +21,19 @@ class Exament
     #[ORM\JoinColumn(nullable: false)]
     private ?Consultation $consultation = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $content = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $create_at = null;
 
     #[ORM\Column]
     private ?bool $etat = null;
+
+    #[ORM\ManyToMany(targetEntity: ExamItem::class, inversedBy: 'examents')]
+    private Collection $items;
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,18 +52,6 @@ class Exament
         return $this;
     }
 
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): static
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
     public function getCreateAt(): ?\DateTimeImmutable
     {
         return $this->create_at;
@@ -68,13 +63,10 @@ class Exament
 
         return $this;
     }
-    public function  contentToArray(): array
-    {
-        return explode(";", $this->content);
-    }
 
     #[ORM\PrePersist]
-    public function prePersist()  {
+    public function prePersist()
+    {
         $this->create_at = new \DateTimeImmutable();
         $this->etat = false;
     }
@@ -87,6 +79,30 @@ class Exament
     public function setEtat(bool $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ExamItem>
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function addItem(ExamItem $item): static
+    {
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(ExamItem $item): static
+    {
+        $this->items->removeElement($item);
 
         return $this;
     }

@@ -18,7 +18,7 @@
         </div>
     </div>
 </div>
-<div class="card mb-2">
+{# <div class="card mb-2">
     <div class="card-header">
         <div class="card-title">
             <h4>Parametre Viteaux</h4>
@@ -42,7 +42,7 @@
         </div>
         {{form_end(formParam)}}
     </div>
-</div>
+</div> #}
 <div class="accordion" id="accordionWithIcon">
     <div class="card accordion-item active mb-2">
         <h2 class="accordion-header d-flex align-items-center">
@@ -91,26 +91,38 @@
                 Examents ({{examents|length}})
             </button>
             {% if is_granted('ROLE_CONSULTATION') %}
-            <button data-bs-toggle="modal" data-bs-target="#addExam" class="btn btn-label-primary me-2">Ajouter</button>
+            {# <button data-bs-toggle="modal" data-bs-target="#addExam"
+                class="btn btn-label-primary me-2">Ajouter</button> #}
+            <a href="{{path('consultation_add_exam',{id:consultation.id})}}"
+                class="btn btn-label-primary me-2">Ajouter</a>
             {% endif %}
         </h2>
         <div id="accordionWithIcon-2" class="accordion-collapse collapse">
             <div class="accordion-body">
                 <div class="row">
                     {% for exament in examents %}
+                    {% set total = 0 %}
                     <div class="col-md-4">
                         <div class="card shadow-none bg-transparent border border-primary">
                             <div class="card-body">
                                 <h5 class="card-title">#EX-{{exament.id}}</h5>
                                 <p class="card-text">
                                 <ol>
-                                    {% for cont in exament.contentToArray %}
+                                    {% for item in exament.items %}
+                                    {% set total = total + item.prix %}
                                     <li>
-                                        {{cont}}
+                                        {{item.nom}} ({{item.prix}} XFA)
                                     </li>
                                     {% endfor %}
                                 </ol>
+                                <h5>ToTal: {{total}} XFA</h5>
                                 </p>
+                                {% if is_granted('ROLE_RECEPTION') %}
+                                <div class="d-grid gap-2 col-6 mx-auto" style="width: 100%;">
+                                    <button class="btn btn-success btn-sm" type="button">Payer</button>
+                                </div>
+                                {% endif %}
+
                             </div>
                         </div>
                     </div>
@@ -120,7 +132,7 @@
         </div>
     </div>
 
-    <div class="accordion-item card">
+    {# <div class="accordion-item card">
         <h2 class="accordion-header d-flex align-items-center">
             <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#accordionWithIcon-3" aria-expanded="false">
@@ -128,7 +140,8 @@
                 Remarque et commentaire
             </button>
             {% if is_granted('ROLE_CONSULTATION') %}
-            <button data-bs-toggle="modal" data-bs-target="#remarqueModal" class="btn btn-label-primary me-2">Ajouter</button>
+            <button data-bs-toggle="modal" data-bs-target="#remarqueModal"
+                class="btn btn-label-primary me-2">Ajouter</button>
             {% endif %}
         </h2>
         <div id="accordionWithIcon-3" class="accordion-collapse collapse">
@@ -145,37 +158,22 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
+    </div> #}
 </div>
-<!-- ModalRemarque -->
+{# <!-- ModalRemarque -->
 <div class="modal fade" id="remarqueModal" tabindex="-1" aria-labelledby="remarqueModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="remarqueModalLabel">Nouvelle remarque ou commentaire</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-         {{form(formComment)}}
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- Modal -->
-<div class="modal fade" id="addExam" tabindex="-1" aria-labelledby="addExamLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addExamLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
+                <h1 class="modal-title fs-5" id="remarqueModalLabel">Nouvelle remarque ou commentaire</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {{form(formExam)}}
+                {{form(formComment)}}
             </div>
         </div>
     </div>
-</div>
+</div> #}
 <!-- Modal add consultation -->
 <div class="modal fade" id="addConsultation" tabindex="-1" aria-labelledby="addConsultationLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

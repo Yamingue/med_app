@@ -20,18 +20,18 @@ export default function (props) {
     console.log(props)
     return <>
         <div className="d-flex justify-content-between">
-        <a href={props.locationBack} className='btn btn-primary mb-2' onClick={handlePrint}>Retour</a>
-        <button className='btn btn-primary mb-2' onClick={handlePrint}><i class='bx bx-printer me-2' ></i> Imprimer</button>
+            <a href={props.locationBack} className='btn btn-primary mb-2' onClick={handlePrint}>Retour</a>
+            <button className='btn btn-primary mb-2' onClick={handlePrint}><i class='bx bx-printer me-2' ></i> Imprimer</button>
         </div>
         <div className="card" ref={componentRef}>
             <div className="card-body">
                 <div className="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
                     <div className="mb-xl-0 mb-4">
                         <div className="d-flex svg-illustration mb-3 gap-2">
-                            <span className="app-brand-text demo text-body fw-bold">Nom Hopital</span>
+                            <span className="demo text-body fw-bold">CABINET MEDICAL DAR ALSALAM <br /> MEDECINE MODERNE</span>
                         </div>
-                        <p className="mb-1">Quartier, ville</p>
-                        <p className="mb-0">+235 66 66 66 66/ 99 99 99 99</p>
+                        <p className="mb-1">En face du terrain de lycée </p>
+                        <p className="mb-0">+235 90 90 22 30/ 66 39 92 24</p>
                     </div>
                     <div>
                         <h4>#{consultation.id}</h4>

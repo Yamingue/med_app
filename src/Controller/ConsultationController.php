@@ -46,55 +46,47 @@ class ConsultationController extends AbstractController
             $this->addFlash('success', 'Ordonnance ajouter avec success');
             return $this->redirectToRoute('consultation_details', ['id' => $consultation->getId()]);
         }
-        $exament = new Exament();
-        $exament->setConsultation($consultation);
-        $formExam = $this->createForm(ExamentType::class, $exament);
-        $formExam->handleRequest($request);
-        if ($formExam->isSubmitted()) {
-           if ($formExam->isValid()) {
-            
-            $this->manager->persist($exament);
-            $this->manager->flush();
-            $this->addFlash('success',"Examents ajouter");
-            return $this->redirectToRoute('consultation_details',['id'=>$consultation->getId()]);
-           }else{
-            $this->addFlash('error',"Incoherance sur le remplissage des exament;");
-           }
-        }
 
         $signeViteaux = $consultation->getParametreViteaux() ?? new ParametreViteaux();
         $formParam = $this->createForm(ParametreVitauxType::class, $signeViteaux);
         $formParam->handleRequest($request);
-        if ($formParam->isSubmitted() && $formParam->isValid() ) 
-        {
+        if ($formParam->isSubmitted() && $formParam->isValid()) {
             if (!$signeViteaux->getConsultation()) {
                 $signeViteaux->setConsultation($consultation);
             }
             $this->manager->persist($signeViteaux);
             $this->manager->flush();
-            $this->addFlash('success',"Signeaux viteaux enregistrer");
-            return $this->redirectToRoute('consultation_details',['id'=>$consultation->getId()]);
+            $this->addFlash('success', "Signeaux viteaux enregistrer");
+            return $this->redirectToRoute('consultation_details', ['id' => $consultation->getId()]);
         }
         $rmq = new Remarque();
         $rmq->setConsultation($consultation);
-        $formComment= $this->createForm(RemarqueType::class, $rmq);
+        $formComment = $this->createForm(RemarqueType::class, $rmq);
         $formComment->handleRequest($request);
-        if ( $formComment->isSubmitted() && $formComment->isValid()) {
+        if ($formComment->isSubmitted() && $formComment->isValid()) {
             $this->manager->persist($rmq);
             $this->manager->flush();
-            $this->addFlash('success','Remarque ajouter');
-            return $this->redirectToRoute('consultation_details',['id'=>$consultation->getId()]);
+            $this->addFlash('success', 'Remarque ajouter');
+            return $this->redirectToRoute('consultation_details', ['id' => $consultation->getId()]);
         }
         // dump(new Patient());
         return $this->render('consultation/details.html.twig', [
             'patient' => $consultation->getPatient(),
+            'consultation' => $consultation,
             'ordonnaces' => $consultation->getOrdonances(),
             'examents' => $consultation->getExaments(),
             'remarques' => $consultation->getRemarques(),
             'form' => $form->createView(),
-            'formExam' => $formExam->createView(),
             'formParam' => $formParam->createView(),
             'formComment' => $formComment->createView(),
+        ]);
+    }
+
+    #[Route('/consultation/{id}/add_exam', name: 'consultation_add_exam')]
+    public function add_exam(Consultation $consultation)
+    {
+        return $this->render('consultation/add_exam.html.twig', [
+            'consultation' => $consultation,
         ]);
     }
 }
