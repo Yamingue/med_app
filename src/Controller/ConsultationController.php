@@ -36,16 +36,6 @@ class ConsultationController extends AbstractController
     #[Route('/consultation/{id}/more', name: 'consultation_details')]
     public function details(Consultation $consultation, Request $request): Response
     {
-        $ordonnace = new Ordonance();
-        $ordonnace->setConsulatation($consultation);
-        $form = $this->createForm(OrdonanceType::class, $ordonnace);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->manager->persist($ordonnace);
-            $this->manager->flush();
-            $this->addFlash('success', 'Ordonnance ajouter avec success');
-            return $this->redirectToRoute('consultation_details', ['id' => $consultation->getId()]);
-        }
 
         $signeViteaux = $consultation->getParametreViteaux() ?? new ParametreViteaux();
         $formParam = $this->createForm(ParametreVitauxType::class, $signeViteaux);
@@ -76,7 +66,6 @@ class ConsultationController extends AbstractController
             'ordonnaces' => $consultation->getOrdonances(),
             'examents' => $consultation->getExaments(),
             'remarques' => $consultation->getRemarques(),
-            'form' => $form->createView(),
             'formParam' => $formParam->createView(),
             'formComment' => $formComment->createView(),
         ]);
@@ -86,6 +75,14 @@ class ConsultationController extends AbstractController
     public function add_exam(Consultation $consultation)
     {
         return $this->render('consultation/add_exam.html.twig', [
+            'consultation' => $consultation,
+        ]);
+    }
+
+    #[Route('/consultation/{id}/add_ordonnace', name: 'consultation_add_ordonnace')]
+    public function add_ordonnace(Consultation $consultation)
+    {
+        return $this->render('consultation/add_ordonnace.html.twig', [
             'consultation' => $consultation,
         ]);
     }

@@ -1,0 +1,6 @@
+{% extends "main.html.twig" %}
+
+{% block body %}
+{% set url = path('consultation_details',{id:consultation.id}) %}
+<div {{ react_component('AddOrdonance',{ id:consultation.id, url: url } ) }}></div>
+{% endblock %}

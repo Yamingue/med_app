@@ -52,8 +52,8 @@
                 Ordonnances ({{ordonnaces|length}})
             </button>
             {% if is_granted('ROLE_CONSULTATION') %}
-            <button data-bs-toggle="modal" data-bs-target="#addConsultation"
-                class="btn btn-label-primary me-2">Ajouter</button>
+            <a href="{{path('consultation_add_ordonnace',{id:consultation.id})}}"
+                class="btn btn-label-primary me-2">Ajouter</a>
             {% endif %}
         </h2>
 
@@ -67,9 +67,9 @@
                                 <h5 class="card-title">#OR-{{ordonnace.id}}</h5>
                                 <p class="card-text">
                                 <ol>
-                                    {% for cont in ordonnace.contentToArray %}
+                                    {% for cont in ordonnace.itemsToArray %}
                                     <li>
-                                        {{cont}}
+                                        {{cont.nom}} ({{cont.type}})
                                     </li>
                                     {% endfor %}
                                 </ol>
@@ -201,19 +201,4 @@
         </div>
     </div>
 </div> #}
-<!-- Modal add consultation -->
-<div class="modal fade" id="addConsultation" tabindex="-1" aria-labelledby="addConsultationLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addConsultationLabel">Nouvelle Ordonnance</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                {{form(form)}}
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}
