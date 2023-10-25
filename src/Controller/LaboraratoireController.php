@@ -19,6 +19,7 @@ class LaboraratoireController extends AbstractController
     #[Route(
         '/index/{_locale}',
         name: 'laboraratoire_index',
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function index(): Response
@@ -30,6 +31,7 @@ class LaboraratoireController extends AbstractController
     #[Route(
         '/exam-{id}/done/{_locale}',
         name: 'laboraratoire_exam_done',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function examDone(Exament $exament = null): Response

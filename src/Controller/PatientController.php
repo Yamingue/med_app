@@ -24,6 +24,7 @@ class PatientController extends AbstractController
     #[Route(
         '/patient/{_locale}',
         name: 'patient',
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function index(): Response
@@ -36,6 +37,7 @@ class PatientController extends AbstractController
     #[Route(
         '/patient/{id}/{_locale}',
         name: 'patient_detail',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function detail(
@@ -65,6 +67,7 @@ class PatientController extends AbstractController
     #[Route(
         '/patient/consultation/{id}/print/{_locale}',
         name: 'patient_print_consultation',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function printConsultation(Consultation $consultation)

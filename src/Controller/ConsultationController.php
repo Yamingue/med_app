@@ -23,6 +23,7 @@ class ConsultationController extends AbstractController
     #[Route(
         '/consultation/{_locale}',
         name: 'consultation',
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function index(): Response
@@ -35,6 +36,7 @@ class ConsultationController extends AbstractController
     #[Route(
         '/consultation/{id}/more/{_locale}',
         name: 'consultation_details',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function details(Consultation $consultation, Request $request): Response
@@ -77,6 +79,7 @@ class ConsultationController extends AbstractController
     #[Route(
         '/consultation/{id}/add_exam/{_locle}',
         name: 'consultation_add_exam',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function add_exam(Consultation $consultation)
@@ -89,6 +92,7 @@ class ConsultationController extends AbstractController
     #[Route(
         '/consultation/{id}/add_ordonnace',
         name: 'consultation_add_ordonnace',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function add_ordonnace(Consultation $consultation)

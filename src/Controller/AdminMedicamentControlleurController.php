@@ -18,6 +18,7 @@ class AdminMedicamentControlleurController extends AbstractController
         '/{_locale}',
         name: 'app_admin_medicament_controlleur_index',
         methods: ['GET'],
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function index(MedicamentRepository $medicamentRepository): Response
@@ -31,6 +32,7 @@ class AdminMedicamentControlleurController extends AbstractController
         '/new/{_locale}',
         name: 'app_admin_medicament_controlleur_new',
         methods: ['GET', 'POST'],
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -56,6 +58,7 @@ class AdminMedicamentControlleurController extends AbstractController
         '/{id}/{_locale}',
         name: 'app_admin_medicament_controlleur_show',
         methods: ['GET'],
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function show(Medicament $medicament): Response
@@ -69,6 +72,7 @@ class AdminMedicamentControlleurController extends AbstractController
         '/{id}/edit/{_locale}',
         name: 'app_admin_medicament_controlleur_edit',
         methods: ['GET', 'POST'],
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function edit(Request $request, Medicament $medicament, EntityManagerInterface $entityManager): Response
@@ -92,6 +96,7 @@ class AdminMedicamentControlleurController extends AbstractController
         '/{id}/{_locale}',
         name: 'app_admin_medicament_controlleur_delete',
         methods: ['POST'],
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function delete(Request $request, Medicament $medicament, EntityManagerInterface $entityManager): Response

@@ -22,6 +22,7 @@ class ProfileController extends AbstractController
     #[Route(
         '/profile/{_locale}',
         name: 'app_profile',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function index(Request  $request, UserPasswordHasherInterface $hasher): Response

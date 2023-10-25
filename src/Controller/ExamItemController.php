@@ -18,6 +18,7 @@ class ExamItemController extends AbstractController
         '/{_locale}',
         name: 'app_exam_item_index',
         methods: ['GET'],
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function index(ExamItemRepository $examItemRepository): Response
@@ -31,6 +32,7 @@ class ExamItemController extends AbstractController
         '/new/{_locale}',
         name: 'app_exam_item_new',
         methods: ['GET', 'POST'],
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -52,7 +54,13 @@ class ExamItemController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_exam_item_show', methods: ['GET'])]
+    #[Route(
+        '/{id}/{_locale}',
+        name: 'app_exam_item_show',
+        methods: ['GET'],
+        defaults: ["_locale" => "ar"],
+        requirements: ["_locale" => "fr|en|ar", 'id' => '\d+']
+    )]
     public function show(ExamItem $examItem): Response
     {
         return $this->render('exam_item/show.html.twig', [
@@ -60,7 +68,13 @@ class ExamItemController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_exam_item_edit', methods: ['GET', 'POST'])]
+    #[Route(
+        '/{id}/edit/{_locale}',
+        name: 'app_exam_item_edit',
+        methods: ['GET', 'POST'],
+        defaults: ["_locale" => "ar"],
+        requirements: ["_locale" => "fr|en|ar", 'id' => '\d+']
+    )]
     public function edit(Request $request, ExamItem $examItem, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ExamItemType::class, $examItem);
@@ -78,7 +92,13 @@ class ExamItemController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_exam_item_delete', methods: ['POST'])]
+    #[Route(
+        '/{id}/{_locale}',
+        name: 'app_exam_item_delete',
+        methods: ['POST'],
+        defaults: ["_locale" => "ar"],
+        requirements: ["_locale" => "fr|en|ar", 'id' => '\d+']
+    )]
     public function delete(Request $request, ExamItem $examItem, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $examItem->getId(), $request->request->get('_token'))) {

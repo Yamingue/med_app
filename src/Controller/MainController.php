@@ -22,6 +22,7 @@ class MainController extends AbstractController
     #[Route(
         '/main/{_locale}',
         name: 'app_main',
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function index(
@@ -47,6 +48,7 @@ class MainController extends AbstractController
     #[Route(
         '/main/paye_exam-{id}/{_locale}',
         name: 'app_main_paye_xam',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function payeExam(Exament $exament = null, Request $request)
@@ -65,6 +67,7 @@ class MainController extends AbstractController
     #[Route(
         '/main/print_exam-{id}/{_locale}',
         name: 'print_exam',
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function printExam(

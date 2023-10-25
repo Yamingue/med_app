@@ -12,7 +12,8 @@ class SecurityController extends AbstractController
     #[Route(
         path: '/login/{locale}',
         name: 'app_login',
-        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+        defaults: ["_locale" => "ar"],
+        requirements: ["_locale" => "fr|en|ar"]
     )]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -28,7 +29,12 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route(
+        path: '/logout',
+        name: 'app_logout',
+        defaults: ["_locale" => "ar"],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');

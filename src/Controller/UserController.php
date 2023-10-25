@@ -24,6 +24,7 @@ class UserController extends AbstractController
         '/index/{_locale}',
         name: 'app_user_index',
         methods: ['GET'],
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function index(UserRepository $userRepository): Response
@@ -37,6 +38,7 @@ class UserController extends AbstractController
         '/new/{_locale}',
         name: 'app_user_new',
         methods: ['GET', 'POST'],
+        defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -70,6 +72,7 @@ class UserController extends AbstractController
         '/{id}/{_locale}',
         name: 'app_user_show',
         methods: ['GET'],
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function show(User $user): Response
@@ -83,6 +86,7 @@ class UserController extends AbstractController
         '/{id}/edit/{_locale}',
         name: 'app_user_edit',
         methods: ['GET', 'POST'],
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
@@ -112,6 +116,7 @@ class UserController extends AbstractController
         '/{id}/{_locale}',
         name: 'app_user_delete',
         methods: ['POST'],
+        defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
     )]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
