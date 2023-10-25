@@ -195,18 +195,20 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a class="dropdown-item active"
+                                        <a class="dropdown-item {% if app.locale == 'en' %}active{% endif %}"
                                             href="{{path('local_switch',{_locale:'en'})}}"><i <span
                                                 class="align-middle">English</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{path('local_switch',{_locale:'fr'})}}">
+                                        <a class="dropdown-item {% if app.locale == 'fr' %}active{% endif %}"
+                                            href="{{path('local_switch',{_locale:'fr'})}}">
                                             <span class="align-middle">French</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{path('local_switch',{_locale:'ar'})}}">
+                                        <a class="dropdown-item {% if app.locale == 'ar' %}active{% endif %}"
+                                            href="{{path('local_switch',{_locale:'ar'})}}">
                                             <span class="align-middle">العربية</span>
                                         </a>
                                     </li>
