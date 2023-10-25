@@ -1,28 +1,31 @@
 <div {{ attributes }}>
-    <label class="form-label" for="basic-default-password12">Entrer l'identifiant d'un exament</label>
+    <label class="form-label" for="basic-default-password12">
+        {% trans %}Entrer l'identifiant d'un exament{% endtrans %}
+    </label>
     <div class="input-group mb-2">
         <span class="input-group-text">
             <i class='bx bx-search'></i>
         </span>
-        <input type="text" data-model="examId" class="form-control" placeholder="Entrer l'identifiant d'un exament">
+        <input type="text" data-model="examId" class="form-control"
+            placeholder="{% trans %}Entrer l'identifiant d'un exament{% endtrans %}">
     </div>
     {% if this.exament %}
     <div class="card text-bg-dark mb-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <strong>
-                    Status:
+                    {% trans %}Status{% endtrans %}:
                     {% if this.exament.etat %}
-                    <span class="text-success">Traiter</span>
+                    <span class="text-success">{% trans %}Traiter{% endtrans %}</span>
                     {% else %}
-                    <span class="text-warning">Non traiter</span>
+                    <span class="text-warning">{% trans %}Non traiter{% endtrans %}</span>
                     {% endif %}
                 </strong>
                 <strong>Etat:
                     {% if this.exament.isPayed %}
-                    <span class="text-success">Payer</span>
+                    <span class="text-success">{% trans %}Payer{% endtrans %}</span>
                     {% else %}
-                    <span class="text-warning">Non payer</span>
+                    <span class="text-warning">{% trans %}Non payer{% endtrans %}</span>
                     {% endif %}
                 </strong>
             </div>

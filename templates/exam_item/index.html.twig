@@ -1,37 +1,45 @@
 {% extends 'main.html.twig' %}
 
-{% block title %}ExamItem index{% endblock %}
+{% block title %}{% trans %}Examens disponible{% endtrans %}{% endblock %}
 
 {% block body %}
-<h1>ExamItem index</h1>
+<h1>{% trans %}Examens disponible{% endtrans %}</h1>
+<a class="btn btn-primary" href="{{ path('app_exam_item_new') }}">{% trans %}Ajouter{% endtrans %}</a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prix</th>
-            <th>actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for exam_item in exam_items %}
-        <tr>
-            <td>{{ exam_item.id }}</td>
-            <td>{{ exam_item.nom }}</td>
-            <td>{{ exam_item.prix }}</td>
-            <td>
-                <a href="{{ path('app_exam_item_show', {'id': exam_item.id}) }}">show</a>
-                <a href="{{ path('app_exam_item_edit', {'id': exam_item.id}) }}">edit</a>
-            </td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="4">no records found</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="card mt-2">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans %}Id{% endtrans %}</th>
+                    <th>{% trans %}Nom{% endtrans %}</th>
+                    <th>{% trans %}Prix{% endtrans %}</th>
+                    <th>{% trans %}actions{% endtrans %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exam_item in exam_items %}
+                <tr>
+                    <td>{{ exam_item.id }}</td>
+                    <td>{{ exam_item.nom }}</td>
+                    <td>{{ exam_item.prix }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary rounded-pill"
+                            href="{{ path('app_exam_item_show', {'id': exam_item.id}) }}">{% trans %}Voir{% endtrans
+                            %}</a>
+                        <a class="btn btn-sm btn-warning rounded-pill"
+                            href="{{ path('app_exam_item_edit', {'id': exam_item.id}) }}">{% trans %}Editer{% endtrans
+                            %}</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4">{% trans %}no records found{% endtrans %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<a href="{{ path('app_exam_item_new') }}">Create new</a>
 {% endblock %}

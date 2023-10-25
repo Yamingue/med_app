@@ -1,59 +1,36 @@
 {% extends 'main.html.twig' %}
 
-{% block title %}Hello ConsultationController!{% endblock %}
+{% block title %}Consultation #{{consultation.id}}{% endblock %}
 
 {% block body %}
+<h5>Consultation #{{consultation.id}}</h5>
 <div class="card mb-2">
     <div class="card-body">
         <div class="card-title">
             <h4>
-                Information du Patient
+                {% trans %}Information du Patient{% endtrans %}
             </h4>
         </div>
         <div class="card-text">
-            <b>Nom :</b> {{patient.nom}} <br>
-            <b>Prenom :</b> {{patient.prenom}} <br>
-            <b>Phone :</b> {{patient.telephone}} <br>
-            <b>Date de naissance :</b> {{patient.neLe |date("d/m/Y")}} <br>
+            <b>{% trans %}Nom{% endtrans %} :</b> {{patient.nom}} <br>
+            <b>{% trans %}Prenom{% endtrans %} :</b> {{patient.prenom}} <br>
+            <b>{% trans %}Phone{% endtrans %} :</b> {{patient.telephone}} <br>
+            <b>{% trans %}Date de naissance{% endtrans %} :</b> {{patient.neLe |date("d/m/Y")}} <br>
         </div>
     </div>
 </div>
-{# <div class="card mb-2">
-    <div class="card-header">
-        <div class="card-title">
-            <h4>Parametre Viteaux</h4>
-        </div>
-    </div>
-    <div class="card-body">
-        {{form_start(formParam)}}
-        <div class="row">
-            <div class="col-sm-6 col-md-3">
-                {{form_row(formParam.temperature)}}
-            </div>
-            <div class="col-sm-6 col-md-3">
-                {{form_row(formParam.poids)}}
-            </div>
-            <div class="col-sm-6 col-md-3">
-                {{form_row(formParam.tails)}}
-            </div>
-            <div class="col-sm-6 col-md-3">
-                {{form_row(formParam.tension_arterielle)}}
-            </div>
-        </div>
-        {{form_end(formParam)}}
-    </div>
-</div> #}
 <div class="accordion" id="accordionWithIcon">
     <div class="card accordion-item active mb-2">
         <h2 class="accordion-header d-flex align-items-center">
             <button type="button" class="accordion-button" data-bs-toggle="collapse"
                 data-bs-target="#accordionWithIcon-1" aria-expanded="true">
                 <i class="fa-solid fa-pills me-2"></i>
-                Ordonnances ({{ordonnaces|length}})
+                {% trans %}Ordonnances{% endtrans %} ({{ordonnaces|length}})
             </button>
             {% if is_granted('ROLE_CONSULTATION') %}
-            <a href="{{path('consultation_add_ordonnace',{id:consultation.id})}}"
-                class="btn btn-label-primary me-2">Ajouter</a>
+            <a href="{{path('consultation_add_ordonnace',{id:consultation.id})}}" class="btn btn-label-primary me-2">
+                {% trans %}Ajouter{% endtrans %}
+            </a>
             {% endif %}
         </h2>
 
@@ -88,13 +65,14 @@
             <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
                 data-bs-target="#accordionWithIcon-2" aria-expanded="false">
                 <i class="fa-solid fa-microscope me-2"></i>
-                Examents ({{examents|length}})
+                {% trans %}Examents{% endtrans %} ({{examents|length}})
             </button>
             {% if is_granted('ROLE_CONSULTATION') %}
             {# <button data-bs-toggle="modal" data-bs-target="#addExam"
                 class="btn btn-label-primary me-2">Ajouter</button> #}
-            <a href="{{path('consultation_add_exam',{id:consultation.id})}}"
-                class="btn btn-label-primary me-2">Ajouter</a>
+            <a href="{{path('consultation_add_exam',{id:consultation.id})}}" class="btn btn-label-primary me-2">
+                {% trans %}Ajouter{% endtrans %}
+            </a>
             {% endif %}
         </h2>
         <div id="accordionWithIcon-2" class="accordion-collapse collapse">
@@ -109,16 +87,16 @@
                                 <div class="d-flex justify-content-between mb-2">
                                     <strong>Status:
                                         {% if exament.etat %}
-                                        <span class="text-success">Traiter</span>
+                                        <span class="text-success">{% trans %}Traiter{% endtrans %}</span>
                                         {% else %}
-                                        <span class="text-warning">Non traiter</span>
+                                        <span class="text-warning">{% trans %}Non traiter{% endtrans %}</span>
                                         {% endif %}
                                     </strong>
                                     <strong>Etat:
                                         {% if exament.isPayed %}
-                                        <span class="text-success">Payer</span>
+                                        <span class="text-success">{% trans %}Payer{% endtrans %}</span>
                                         {% else %}
-                                        <span class="text-warning">Non payer</span>
+                                        <span class="text-warning">{% trans %}Non payer{% endtrans %}</span>
                                         {% endif %}
                                     </strong>
                                 </div>
@@ -158,47 +136,6 @@
             </div>
         </div>
     </div>
-
-    {# <div class="accordion-item card">
-        <h2 class="accordion-header d-flex align-items-center">
-            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-                data-bs-target="#accordionWithIcon-3" aria-expanded="false">
-                <i class="bx bx-gift me-2"></i>
-                Remarque et commentaire
-            </button>
-            {% if is_granted('ROLE_CONSULTATION') %}
-            <button data-bs-toggle="modal" data-bs-target="#remarqueModal"
-                class="btn btn-label-primary me-2">Ajouter</button>
-            {% endif %}
-        </h2>
-        <div id="accordionWithIcon-3" class="accordion-collapse collapse">
-            <div class="accordion-body">
-                {% for rem in remarques %}
-                <div class="card border border-dark mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">{{rem.titre}}</h5>
-                        <p class="card-text text-dark">
-                            {{rem.description}}
-                        </p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div> #}
+    =
 </div>
-{# <!-- ModalRemarque -->
-<div class="modal fade" id="remarqueModal" tabindex="-1" aria-labelledby="remarqueModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="remarqueModalLabel">Nouvelle remarque ou commentaire</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {{form(formComment)}}
-            </div>
-        </div>
-    </div>
-</div> #}
 {% endblock %}

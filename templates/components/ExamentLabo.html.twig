@@ -4,7 +4,8 @@
         <span class="input-group-text">
             <i class='bx bx-search'></i>
         </span>
-        <input type="text" data-model="examId" class="form-control" placeholder="Entrer l'identifiant d'un exament">
+        <input type="text" data-model="examId" class="form-control"
+            placeholder="{% trans %}Entrer l'identifiant d'un exament{% endtrans %}">
     </div>
 
     {% if examId > 0 and ( this.exament is not null ) %}
@@ -18,11 +19,11 @@
             </div>
             {% endif %}
 
-            <h5> Consultation: <b>#{{this.exament.consultation.id}}</b></h5>
+            <h5> {% trans %}Consultation{% endtrans %}: <b>#{{this.exament.consultation.id}}</b></h5>
             {% set patient = this.exament.consultation.patient %}
-            Nom: {{patient.nom}} <br>
-            Prenom: {{patient.prenom}} <br>
-            Date de naissance: {{patient.neLe|date("d/m/Y")}} <br>
+            {% trans %}Nom{% endtrans %}: {{patient.nom}} <br>
+            {% trans %}Prenom{% endtrans %}: {{patient.prenom}} <br>
+            {% trans %}Date de naissance{% endtrans %}: {{patient.neLe|date("d/m/Y")}} <br>
         </div>
         <div class="card-body">
             <h5 class="card-title">#EX-{{this.exament.id}}</h5>
@@ -40,7 +41,7 @@
         <div class="card-footer">
             <div class="d-grid gap-2 mx-auto">
                 <a class="btn btn-primary" href="{{path('laboraratoire_exam_done',{id:this.exament.id})}}">
-                    Terminer
+                    {% trans %}Terminer{% endtrans %}
                 </a>
             </div>
         </div>
@@ -60,11 +61,11 @@
                     </div>
                     {% endif %}
 
-                    <h5> Consultation: <b>#{{exament.consultation.id}}</b></h5>
+                    <h5> {% trans %}Consultation{% endtrans %}: <b>#{{exament.consultation.id}}</b></h5>
                     {% set patient = exament.consultation.patient %}
-                    Nom: {{patient.nom}} <br>
-                    Preom: {{patient.prenom}} <br>
-                    Date de naissance: {{patient.neLe|date("d/m/Y")}} <br>
+                    {% trans %}Nom{% endtrans %}: {{patient.nom}} <br>
+                    {% trans %}Preom{% endtrans %}: {{patient.prenom}} <br>
+                    {% trans %}Date de naissance{% endtrans %}: {{patient.neLe|date("d/m/Y")}} <br>
 
                 </div>
                 <div class="card-body">
@@ -83,7 +84,7 @@
                 <div class="card-footer">
                     <div class="d-grid gap-2 mx-auto">
                         <a class="btn btn-primary" href="{{path('laboraratoire_exam_done',{id:exament.id})}}">
-                            Terminer
+                            {% trans %}Terminer{% endtrans %}
                         </a>
                     </div>
                 </div>

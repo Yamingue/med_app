@@ -1,20 +1,21 @@
 <div {{ attributes }}>
-    <div class="input-group " >
+    <div class="input-group ">
         <span class="input-group-text">
             <i class='bx bx-search'></i>
         </span>
-        <input type="text" data-model="query" class="form-control" placeholder="Chercher un patient">
+        <input type="text" data-model="query" class="form-control"
+            placeholder="{% trans %}Chercher un patient{% endtrans %}">
     </div>
     <!-- component html -->
     <table class="table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Téléphone</th>
-                <th>Date de naissance</th>
-                <th>Actions</th>
+                <th>{% trans %}Nom{% endtrans %}</th>
+                <th>{% trans %}Prenom{% endtrans %}</th>
+                <th>{% trans %}Téléphone{% endtrans %}</th>
+                <th>{% trans %}Date de naissance{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -30,7 +31,7 @@
                 <td>
                     <div class="demo-inline-spacing">
                         <a href="{{path('patient_detail',{id:patient.id})}}" class="btn btn-icon btn-outline-primary">
-                            <i class='tf-icons bx bx-show' ></i>
+                            <i class='tf-icons bx bx-show'></i>
                         </a>
                         <button type="button" class="btn btn-icon btn-outline-warning">
                             <i class='tf-icons bx bx-edit'></i>

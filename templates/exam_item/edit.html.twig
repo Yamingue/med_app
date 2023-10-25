@@ -3,11 +3,26 @@
 {% block title %}Edit ExamItem{% endblock %}
 
 {% block body %}
-<h1>Edit ExamItem</h1>
 
-{{ include('exam_item/_form.html.twig', {'button_label': 'Update'}) }}
+<div class="row">
+    <div class="col-sm-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-primary" href="{{ path('app_exam_item_index') }}">{% trans %}Retour{% endtrans
+                        %}</a>
 
-<a href="{{ path('app_exam_item_index') }}">back to list</a>
+                    {{ include('exam_item/_delete_form.html.twig') }}
+                </div>
+            </div>
+            <div class="card-body">
+                {{ include('exam_item/_form.html.twig', {'button_label': 'Update'|trans}) }}
 
-{{ include('exam_item/_delete_form.html.twig') }}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

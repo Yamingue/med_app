@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="card mb-4">
-    <h5 class="card-header">Information personnel</h5>
+    <h5 class="card-header">{% trans %}Information personnel{% endtrans %}</h5>
     <hr class="my-0">
     <div class="card-body">
         {{form_start(form)}}
@@ -30,7 +30,7 @@
     <!-- /Account -->
 </div>
 <div class="card mb-4">
-    <h5 class="card-header">Mot de passe</h5>
+    <h5 class="card-header">{% trans %}Mot de passe{% endtrans %}</h5>
     <hr class="my-0">
     <div class="card-body">
         {{form(formPass)}}

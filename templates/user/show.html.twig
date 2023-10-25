@@ -5,31 +5,33 @@
 {% block body %}
 
 <div class="d-flex justify-content-between">
-    <a class="btn btn-sm btn-primary" href="{{ path('app_user_index') }}">Retour</a>
-    <a class="btn btn-sm btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+    <a class="btn btn-sm btn-primary" href="{{ path('app_user_index') }}">{% trans %}Retour{% endtrans %}</a>
+    <a class="btn btn-sm btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">
+        {% trans %}Modifier{% endtrans %}
+    </a>
 </div>
 <div class="card mt-2">
     <div class="card-body">
         <table class="table">
             <tbody>
                 <tr>
-                    <th>Username</th>
+                    <th>{% trans %}Username{% endtrans %}</th>
                     <td>{{ user.username }}</td>
                 </tr>
                 <tr>
-                    <th>Roles</th>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <th>{% trans %}Roles{% endtrans %}</th>
+                    <td>{{ user.roles ? user.role }}</td>
                 </tr>
                 <tr>
-                    <th>Nom</th>
+                    <th>{% trans %}Nom{% endtrans %}</th>
                     <td>{{ user.nom }}</td>
                 </tr>
                 <tr>
-                    <th>Prenom</th>
+                    <th>{% trans %}Prenom{% endtrans %}</th>
                     <td>{{ user.prenom }}</td>
                 </tr>
                 <tr>
-                    <th>Genre</th>
+                    <th>{% trans %}Genre{% endtrans %}</th>
                     <td>{{ user.genre }}</td>
                 </tr>
                 <tr>

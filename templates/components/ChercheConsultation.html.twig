@@ -1,10 +1,13 @@
 <div {{ attributes }}>
-    <label class="form-label" for="basic-default-password12">Entrer l'identifiant d'une consultation</label>
+    <label class="form-label" for="basic-default-password12">
+        {% trans %}Entrer l'identifiant d'une consultation{% endtrans %}
+    </label>
     <div class="input-group mb-2">
         <span class="input-group-text">
             <i class='bx bx-search'></i>
         </span>
-        <input type="text" data-model="consultId" class="form-control" placeholder="Entrer l'identifiant d'un exament">
+        <input type="text" data-model="consultId" class="form-control"
+            placeholder="{% trans %}Entrer l'identifiant d'un exament{% endtrans %}">
     </div>
     {% if this.consultId > 0 %}
     {% if this.consultation %}
@@ -24,31 +27,33 @@
             </div>
             <h5 class="card-title">#{{this.consultation.id}}</h5>
             <p class="card-text">
-                <strong>Date:</strong> {{this.consultation.createAt|date("d-m-Y")}}<br>
-                <strong>Type :</strong> {{this.consultation.type}}<br>
-                <strong>Motif :</strong> <span class="text dark">{{this.consultation.raison}}</span><br>
+                <strong>{% trans %}Date{% endtrans %}:</strong> {{this.consultation.createAt|date("d-m-Y")}}<br>
+                <strong>{% trans %}Type{% endtrans %} :</strong> {{this.consultation.type}}<br>
+                <strong>{% trans %}Motif{% endtrans %} :</strong> <span
+                    class="text dark">{{this.consultation.raison}}</span><br>
             </p>
             <div class="d-flex justify-content-between">
                 <div style="display:flex ;flex-direction:column; align-items:center">
                     <strong>
-                        Examens
+                        {% trans %}Examens{% endtrans %}
                     </strong>
                     <div>{{this.consultation.examents|length}}</div>
                 </div>
                 <div style="display:flex ;flex-direction:column; align-items:center">
                     <strong>
-                        Ordonnances
+                        {% trans %}Ordonnances{% endtrans %}
                     </strong>
                     <div>{{this.consultation.ordonances|length}}</div>
                 </div>
             </div>
             <div class="d-grid mt-2">
-                <a href="{{ path('consultation_details',{id:this.consultation.id}) }}" class="btn btn-primary">Détails</a>
+                <a href="{{ path('consultation_details',{id:this.consultation.id}) }}" class="btn btn-primary">
+                    {% trans %}Détails{% endtrans %}</a>
             </div>
         </div>
     </div>
     {% else %}
-    Consultation <b>#{{this.consultId}}</b> introuvable
+    {% trans %}Consultation{% endtrans %} <b>#{{this.consultId}}</b> {% trans %}introuvable{% endtrans %}
     {% endif %}
 
     {% endif %}

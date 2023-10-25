@@ -7,7 +7,7 @@
 <script src="/assets/vendor/libs/select2/select2.js"></script>
 {% endblock %}
 {% block body %}
-<a class="btn btn-sm btn-primary mb-2" href="{{ path('app_user_index') }}">Retour</a>
+<a class="btn btn-sm btn-primary mb-2" href="{{ path('app_user_index') }}">{% trans %}Retour{% endtrans %}</a>
 <div class="card">
     <div class="card-body">
         {{ include('user/_form.html.twig') }}

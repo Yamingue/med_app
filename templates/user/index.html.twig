@@ -3,20 +3,20 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-<a class="btn btn-sm btn-primary" href="{{ path('app_user_new') }}">Ajouter un utilisateur</a>
+<a class="btn btn-sm btn-primary" href="{{ path('app_user_new') }}">{% trans %}Ajouter un utilisateur{% endtrans %}</a>
 
 <div class="card mt-2">
     <div class="card-body table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Username</th>
-                    <th>Roles</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Genre</th>
-                    <th>Civilite</th>
-                    <th>actions</th>
+                    <th>{% trans %}Username{% endtrans %}</th>
+                    <th>{% trans %}Roles{% endtrans %}</th>
+                    <th>{% trans %}Nom{% endtrans %}</th>
+                    <th>{% trans %}Prenom{% endtrans %}</th>
+                    <th>{% trans %}Genre{% endtrans %}</th>
+                    <th>{% trans %}Civilite{% endtrans %}</th>
+                    <th>{% trans %}actions{% endtrans %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,13 +29,15 @@
                     <td>{{ user.genre }}</td>
                     <td>{{ user.civilite }}</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
-                        <a class="btn btn-sm btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                        <a class="btn btn-sm btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">{% trans
+                            %}Voir{% endtrans %}</a>
+                        <a class="btn btn-sm btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">{% trans
+                            %}Modifier{% endtrans %}</a>
                     </td>
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="9">no records found</td>
+                    <td colspan="9">{% trans %}Pas d'enregistrement{% endtrans %}</td>
                 </tr>
                 {% endfor %}
             </tbody>

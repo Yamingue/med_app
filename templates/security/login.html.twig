@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
+<html lang="{{app.local}}" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
   data-assets-path="/assets/" data-template="horizontal-menu-template">
 
 <head>
@@ -8,7 +8,7 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title>Bienvenu a la clinique</title>
 
   <meta name="description" content="" />
 
@@ -51,30 +51,29 @@
             <!-- Logo -->
             <div class="app-brand justify-content-center">
               <a href="#" class="app-brand-link gap-2">
-                <span class="app-brand-text demo text-body fw-bold">Hopital XY</span>
+                <span class="app-brand-text demo text-body fw-bold">Clinique Daral Salam</span>
               </a>
             </div>
-            <!-- /Logo -->
-            {# <h4 class="mb-2">Welcome to Sneat! 👋</h4> #}
             {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             {% if app.user %}
             <div class="mb-3">
-              You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+              You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{% trans %}Logout{%
+                endtrans %}</a>
             </div>
             {% endif %}
 
             <form id="formAuthentication" class="mb-3" method="POST">
               <div class="mb-3">
-                <label for="inputUsername" class="form-label">Username</label>
+                <label for="inputUsername" class="form-label">{% trans %}Username{% endtrans %}</label>
                 <input type="text" class="form-control" id="inputUsername" value="{{ last_username }}" name="username"
                   id="inputUsername" placeholder="Enter your email or username" autofocus />
               </div>
               <div class="mb-3 form-password-toggle">
                 <div class="d-flex justify-content-between">
-                  <label class="form-label" for="inputPassword">Password</label>
+                  <label class="form-label" for="inputPassword">{% trans %}Password{% endtrans %}</label>
                 </div>
                 <div class="input-group input-group-merge">
                   <input type="password" class="form-control" name="password" id="inputPassword"
@@ -84,11 +83,9 @@
                 </div>
               </div>
               <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                <button class="btn btn-primary d-grid w-100" type="submit">{% trans %}Sign in{% endtrans %}</button>
               </div>
-              <input type="hidden" name="_csrf_token"
-              value="{{ csrf_token('authenticate') }}"
-       >
+              <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </form>
           </div>
         </div>
@@ -119,10 +116,12 @@
   <script src="/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
 
   <!-- Main JS -->
-  {# <script src="/assets/js/main.js"></script> #}
+  {#
+  <script src="/assets/js/main.js"></script> #}
 
   <!-- Page JS -->
-  {# <script src="/assets/js/pages-auth.js"></script> #}
+  {#
+  <script src="/assets/js/pages-auth.js"></script> #}
 </body>
 
 </html>
