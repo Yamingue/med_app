@@ -21,28 +21,45 @@ class ConsultationRepository extends ServiceEntityRepository
         parent::__construct($registry, Consultation::class);
     }
 
-//    /**
-//     * @return Consultation[] Returns an array of Consultation objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Consultation[] Returns an array of Consultation objects
+     */
+    public function findByDate(\DateTime $date): array
+    {
+        $date_forma = $date->format("Y-m-d");
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.create_at like :val')
+            ->setParameter('val', '%' . $date_forma . "%")
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Consultation
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * @return Consultation[] Returns an array of Consultation objects
+     */
+    public function findBetweenDate(\DateTime $first, \DateTime $last): array
+    {
+        $first_format = $first->format("Y-m-d H:i:s");
+        $last_format = $last->format("Y-m-d H:i:s");
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.create_at BETWEEN  :last AND :first')
+            ->setParameter('first', $first_format)
+            ->setParameter('last',  $last_format)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+    //    public function findOneBySomeField($value): ?Consultation
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

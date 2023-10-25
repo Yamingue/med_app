@@ -21,28 +21,46 @@ class ExamentRepository extends ServiceEntityRepository
         parent::__construct($registry, Exament::class);
     }
 
-   /**
-    * @return Exament[] Returns an array of Exament objects
-    */
-   public function findNotFinished(): array
-   {
-       return $this->createQueryBuilder('e')
-           ->andWhere('e.etat = :val')
-           ->setParameter('val', false)
-           ->orderBy('e.id', 'ASC')
-           ->setMaxResults(10)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+    /**
+     * @return Exament[] Returns an array of Exament objects
+     */
+    public function findNotFinished(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.etat = :val')
+            ->setParameter('val', false)
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Exament
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * @return Exament[] Returns an array of Exament objects
+     */
+    public function findByDate(\DateTime $dateTime): array
+    {
+        $date_forma = $dateTime->format("Y-m-d");
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.paye_at like :val')
+            ->setParameter('val', '%' . $date_forma . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Exament[] Returns an array of Exament objects
+     */
+    public function findBetweenDate(\DateTime $first, \DateTime $last): array
+    {
+        $first_format = $first->format("Y-m-d H:i:s");
+        $last_format = $last->format("Y-m-d H:i:s");
+        $query =  $this->createQueryBuilder('e')
+            ->andWhere("e.paye_at  BETWEEN  :last AND :first")
+            ->setParameter('first', $first_format)
+            ->setParameter('last',  $last_format);
+        // dump($query->getQuery());
+        return $query->getQuery()
+            ->getResult();
+    }
 }

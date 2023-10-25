@@ -141,6 +141,15 @@ class Exament
         return $items;
     }
 
+    public function getAmount(): int
+    {
+        $total = 0;
+        foreach ($this->items as $item) {
+            $total += $item->getPrix();
+        }
+        return $total;
+    }
+
     public function getPayeAt(): ?\DateTimeImmutable
     {
         return $this->paye_at;

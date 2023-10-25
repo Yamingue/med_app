@@ -145,6 +145,15 @@
                             </div>
                         </a>
                     </li>
+                    <li class="menu-item {% if 'app_admin_state' in app.request.get('_route') %}active{% endif %}">
+                        <a href="{{path('app_admin_state')}}" class="menu-link">
+                            {# <i class='menu-icon tf-icons  bx bxs-capsule'></i> #}
+                            <i class="menu-icon tf-icons bx bx-chart"></i>
+                            <div class="text-truncate">
+                                {% trans %}Recette{% endtrans %}
+                            </div>
+                        </a>
+                    </li>
                     <li
                         class="menu-item {% if 'app_admin_medicament_controlleur' in app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_admin_medicament_controlleur_index')}}" class="menu-link">
