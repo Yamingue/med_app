@@ -22,7 +22,7 @@ final class ExamentLabo
 
     public function getExament(): ?Exament
     {
-        return $this->examentRepository->find($this->examId);
+        return $this->examentRepository->findOneBy(['id' => $this->examId, 'etat' => 0, 'is_payed' => 1]);
     }
 
     public function getExaments()
