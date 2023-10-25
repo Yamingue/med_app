@@ -7,11 +7,11 @@
         <input type="text" data-model="examId" class="form-control" placeholder="Entrer l'identifiant d'un exament">
     </div>
     {% if this.exament %}
-    {# {{ dump() }} #}
     <div class="card text-bg-dark mb-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <strong>Status:
+                <strong>
+                    Status:
                     {% if this.exament.etat %}
                     <span class="text-success">Traiter</span>
                     {% else %}
@@ -62,8 +62,8 @@
     <div class="row">
         {% for exament in this.examents %}
         {% set total = 0 %}
-        <div class="col mb-2">
-            <div class="card shadow-none bg-transparent border border-primary">
+        <div class="col-sm-3 mb-2">
+            <div class="card bg-transparent border border-primary">
                 <div class="card-body">
                     <h5 class="card-title">#EX-{{exament.id}}</h5>
                     <p class="card-text">
@@ -75,8 +75,8 @@
                         </li>
                         {% endfor %}
                     </ol>
-                    <h5>ToTal: {{total|number_format(0,'.',' ')}} XFA</h5>
                     </p>
+                    <h5>ToTal: {{total|number_format(0,'.',' ')}} XFA</h5>
                     <div class="d-grid gap-2 col-6 mx-auto" style="width: 100%;">
                         {% if is_granted('ROLE_RECEPTION') and (not exament.isPayed) %}
                         <a href="{{path('app_main_paye_xam',{id:exament.id})}}" class="btn btn-success btn-sm">
@@ -92,10 +92,9 @@
                         </a>
 
                     </div>
-
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
