@@ -1,0 +1,76 @@
+"Statistique des recettes": "Statistique des recettes"
+Patient: Patient
+Utilisteurs: Utilisteurs
+Consultations: Consultations
+Examens: Examens
+"Recette de la journé de": "Recette de la journé de"
+"Recette des 7 dernier jours": "Recette des 7 dernier jours"
+"Recette des 30 dernier jours": "Recette des 30 dernier jours"
+Accueille: Accueille
+Utilisateurs: Utilisateurs
+"Examens disponible": "Examens disponible"
+Recette: Recette
+Medicaments: Medicaments
+Examents: Examents
+"Mon Profil": "Mon Profil"
+"Log Out": "Se déconnecter"
+Logout: "Se déconnecter"
+Username: "Nom d'utilisateur"
+Password: "Mot de passe"
+"Sign in": "Se connecter"
+Imprimer: Imprimer
+"Information du Patient": "Information du Patient"
+Nom: Nom
+Prenom: Prenom
+Phone: "Téléphone"
+"Date de naissance": "Date de naissance"
+Ordonnances: Ordonnances
+Ajouter: Ajouter
+Traiter: Traiter
+"Non traiter": "Non traiter"
+Payer: Payer
+"Non payer": "Non payer"
+Laboraratoire: Laboraratoire
+Supprimer: Supprimer
+Retour: Retour
+"Ajouter un utilisateur": "Ajouter un utilisateur"
+Roles: Roles
+Genre: Genre
+Civilite: Civilite
+actions: actions
+Voir: Voir
+Modifier: Modifier
+"Pas d'enregistrement": "Pas d'enregistrement"
+Effacer: Effacer
+"Editer Medicament": "Editer Medicament"
+"Retour a la list": "Retour a la list"
+"List des medicaments": "List des medicaments"
+Id: Id
+Type: Type
+Editer: Editer
+"no records found": "Aucun enregistrement trouvé"
+Save: Sauvegarder
+"Entrer l'identifiant d'une consultation": "Entrer l'identifiant d'une consultation"
+"Entrer l'identifiant d'un exament": "Entrer l'identifiant d'un exament"
+Date: Date
+Motif: Motif
+Détails: Détails
+Consultation: Consultation
+introuvable: introuvable
+Terminer: Terminer
+Preom: Preom
+Status: Status
+"Chercher un patient": "Chercher un patient"
+Téléphone: Téléphone
+Actions: Actions
+Update: "Mise à jour"
+Prix: Prix
+"Information personnel": "Information personnel"
+"Mot de passe": "Mot de passe"
+"Nouvelle Consultation": "Nouvelle Consultation"
+"Ajouter un patient": "Ajouter un patient"
+"Nouveau patient": "Nouveau patient"
+"You are not authorized!": "Vous n'êtes pas autorisé!"
+"You do not have permission to view this page using the credentials that you have provided while\n        login.": "Vous n'êtes pas autorisé à afficher cette page en utilisant les informations d'identification que vous avez fournies lors de la connexion."
+"Please contact your site administrator.": "Merci de contacter votre administrateur."
+"Back to home": "Retour à la page d'accueil"

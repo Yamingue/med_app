@@ -1,0 +1,76 @@
+"Statistique des recettes": "Revenue statistics"
+Patient: Patient
+Utilisteurs: Users
+Consultations: Consultations
+Examens: Exams
+"Recette de la journé de": "Recipe of the day"
+"Recette des 7 dernier jours": "Recipe from the last 7 days"
+"Recette des 30 dernier jours": "Recipe from the last 30 days"
+Accueille: Home
+Utilisateurs: Users
+"Examens disponible": "Exams available"
+Recette: Recipe
+Medicaments: Medicaments
+Examents: Exams
+"Mon Profil": "My profile"
+"Log Out": "Log Out"
+Logout: Logout
+Username: Username
+Password: Password
+"Sign in": "Sign in"
+Imprimer: Print
+"Information du Patient": "Patient Information"
+Nom: Name
+Prenom: "First name"
+Phone: Phone
+"Date de naissance": "Date of birth"
+Ordonnances: Prescriptions
+Ajouter: Add
+Traiter: Treat
+"Non traiter": "Not treat"
+Payer: Pay
+"Non payer": "Not payed"
+Laboraratoire: Laboratory
+Supprimer: Delete
+Retour: Back
+"Ajouter un utilisateur": "Add user"
+Roles: Roles
+Genre: Gender
+Civilite: Civilite
+actions: actions
+Voir: See
+Modifier: Update
+"Pas d'enregistrement": "no records found"
+Effacer: Delete
+"Editer Medicament": "Edit Medication"
+"Retour a la list": "Back to list"
+"List des medicaments": "List of medications"
+Id: Id
+Type: Type
+Editer: Edit
+"no records found": "no records found"
+Save: Save
+"Entrer l'identifiant d'une consultation": "Enter the identifier of a consultation"
+"Entrer l'identifiant d'un exament": "Enter an exam ID"
+Date: Date
+Motif: "Reason for coming"
+Détails: Details
+Consultation: Consultation
+introuvable: "not found"
+Terminer: Finish
+Preom: "First name"
+Status: Status
+"Chercher un patient": "Find a patient"
+Téléphone: Tel
+Actions: Actions
+Update: Update
+Prix: Price
+"Information personnel": "Personal information"
+"Mot de passe": "Password"
+"Nouvelle Consultation": "New Consultation"
+"Ajouter un patient": "Add a patient"
+"Nouveau patient": "New patient"
+"You are not authorized!": "You are not authorized!"
+"You do not have permission to view this page using the credentials that you have provided while\n        login.": "You do not have permission to view this page using the credentials that you have provided while\n        login."
+"Please contact your site administrator.": "Please contact your site administrator."
+"Back to home": "Back to home"
