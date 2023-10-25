@@ -19,7 +19,11 @@ class MainController extends AbstractController
     {
         $this->manager = $managerRegistry->getManager();
     }
-    #[Route('/main', name: 'app_main')]
+    #[Route(
+        '/main/{_locale}',
+        name: 'app_main',
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index(
         Request $request,
         PatientRepository $patientRepository
@@ -40,7 +44,11 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route('/main/paye_exam-{id}', name: 'app_main_paye_xam')]
+    #[Route(
+        '/main/paye_exam-{id}/{_locale}',
+        name: 'app_main_paye_xam',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function payeExam(Exament $exament = null, Request $request)
     {
         if ($exament) {
@@ -54,7 +62,11 @@ class MainController extends AbstractController
     }
 
 
-    #[Route('/main/print_exam-{id}', name: 'print_exam')]
+    #[Route(
+        '/main/print_exam-{id}/{_locale}',
+        name: 'print_exam',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function printExam(
         Exament $exament = null,
         Request $request

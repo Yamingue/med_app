@@ -3,13 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Consultation;
-use App\Entity\Exament;
-use App\Entity\Ordonance;
 use App\Entity\ParametreViteaux;
-use App\Entity\Patient;
 use App\Entity\Remarque;
-use App\Form\ExamentType;
-use App\Form\OrdonanceType;
 use App\Form\ParametreVitauxType;
 use App\Form\RemarqueType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,7 +20,11 @@ class ConsultationController extends AbstractController
     {
         $this->manager = $managerRegistry->getManager();
     }
-    #[Route('/consultation', name: 'consultation')]
+    #[Route(
+        '/consultation/{_locale}',
+        name: 'consultation',
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index(): Response
     {
         return $this->render('consultation/index.html.twig', [
@@ -33,7 +32,11 @@ class ConsultationController extends AbstractController
         ]);
     }
 
-    #[Route('/consultation/{id}/more', name: 'consultation_details')]
+    #[Route(
+        '/consultation/{id}/more/{_locale}',
+        name: 'consultation_details',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function details(Consultation $consultation, Request $request): Response
     {
 
@@ -71,7 +74,11 @@ class ConsultationController extends AbstractController
         ]);
     }
 
-    #[Route('/consultation/{id}/add_exam', name: 'consultation_add_exam')]
+    #[Route(
+        '/consultation/{id}/add_exam/{_locle}',
+        name: 'consultation_add_exam',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function add_exam(Consultation $consultation)
     {
         return $this->render('consultation/add_exam.html.twig', [
@@ -79,7 +86,11 @@ class ConsultationController extends AbstractController
         ]);
     }
 
-    #[Route('/consultation/{id}/add_ordonnace', name: 'consultation_add_ordonnace')]
+    #[Route(
+        '/consultation/{id}/add_ordonnace',
+        name: 'consultation_add_ordonnace',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function add_ordonnace(Consultation $consultation)
     {
         return $this->render('consultation/add_ordonnace.html.twig', [

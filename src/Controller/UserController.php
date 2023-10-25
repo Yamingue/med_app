@@ -17,10 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/user')]
 class UserController extends AbstractController
 {
-    public function __construct(private UserPasswordHasherInterface $hasher) {
-     
+    public function __construct(private UserPasswordHasherInterface $hasher)
+    {
     }
-    #[Route('/index', name: 'app_user_index', methods: ['GET'])]
+    #[Route(
+        '/index/{_locale}',
+        name: 'app_user_index',
+        methods: ['GET'],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
@@ -28,7 +33,12 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    #[Route(
+        '/new/{_locale}',
+        name: 'app_user_new',
+        methods: ['GET', 'POST'],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -36,17 +46,17 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $pass = $form->get('password')->getData();
             $mess = '';
             if (!$pass) {
-              $pass = '123456';
-              $mess = "123456 est le mot de pass par default.";
+                $pass = '123456';
+                $mess = "123456 est le mot de pass par default.";
             }
             $user->setPassword($this->hasher->hashPassword($user, $pass));
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success','Utilisateur ajouter.'.$mess);
+            $this->addFlash('success', 'Utilisateur ajouter.' . $mess);
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,7 +66,12 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    #[Route(
+        '/{id}/{_locale}',
+        name: 'app_user_show',
+        methods: ['GET'],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', [
@@ -64,21 +79,26 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+    #[Route(
+        '/{id}/edit/{_locale}',
+        name: 'app_user_edit',
+        methods: ['GET', 'POST'],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $pass = $form->get('password')->getData();
             if ($pass) {
-              $user->setPassword($this->hasher->hashPassword($user, $pass));
+                $user->setPassword($this->hasher->hashPassword($user, $pass));
             }
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success','Utilisateur modifier.');
+            $this->addFlash('success', 'Utilisateur modifier.');
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -88,10 +108,15 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
+    #[Route(
+        '/{id}/{_locale}',
+        name: 'app_user_delete',
+        methods: ['POST'],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
         }

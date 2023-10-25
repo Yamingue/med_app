@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminStateController extends AbstractController
 {
-    #[Route('/admin/state', name: 'app_admin_state')]
+    #[Route('/admin/state/{_locale}', name: 'app_admin_state', requirements: ["_locale" => "fr|en|ar"])]
     public function index(): Response
     {
         return $this->render('admin_state/index.html.twig', [

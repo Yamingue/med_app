@@ -16,11 +16,16 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 class PatientController extends AbstractController
 {
     private $manager;
-    public function __construct(ManagerRegistry $managerRegistry) {
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
         $this->manager = $managerRegistry->getManager();
     }
-    
-    #[Route('/patient', name: 'patient')]
+
+    #[Route(
+        '/patient/{_locale}',
+        name: 'patient',
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index(): Response
     {
         return $this->render('patient/index.html.twig', [
@@ -28,13 +33,16 @@ class PatientController extends AbstractController
         ]);
     }
 
-    #[Route('/patient/{id}', name: 'patient_detail')]
+    #[Route(
+        '/patient/{id}/{_locale}',
+        name: 'patient_detail',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function detail(
         Request $request,
         ConsultationRepository $consultationRepository,
         Patient $patient = null
-        ): Response
-    {
+    ): Response {
         if ($patient == null) {
             return $this->redirectToRoute('patient');
         }
@@ -45,26 +53,30 @@ class PatientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->manager->persist($consultation);
             $this->manager->flush();
-            $this->addFlash('success','Consultation ajouter avec success');
-            return $this->redirectToRoute('patient_detail',['id'=>$patient->getId()]);
+            $this->addFlash('success', 'Consultation ajouter avec success');
+            return $this->redirectToRoute('patient_detail', ['id' => $patient->getId()]);
         }
         return $this->render('patient/details.html.twig', [
             'form' => $form->createView(),
-            'consultations' => $consultationRepository->findBy(['patient' => $patient],['id' => 'DESC']),
+            'consultations' => $consultationRepository->findBy(['patient' => $patient], ['id' => 'DESC']),
         ]);
     }
 
-    #[Route('/patient/consultation/{id}/print', name: 'patient_print_consultation')]
+    #[Route(
+        '/patient/consultation/{id}/print/{_locale}',
+        name: 'patient_print_consultation',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function printConsultation(Consultation $consultation)
     {
-        $patient = $this->json($consultation->getPatient(), context:[
-            AbstractNormalizer::GROUPS=>'READ:PAIENT'
+        $patient = $this->json($consultation->getPatient(), context: [
+            AbstractNormalizer::GROUPS => 'READ:PAIENT'
         ])->getContent();
-        $consultationData = $this->json($consultation, context:[
-            AbstractNormalizer::GROUPS=>'READ:CONSULTATION'
+        $consultationData = $this->json($consultation, context: [
+            AbstractNormalizer::GROUPS => 'READ:CONSULTATION'
         ])->getContent();
         $type = $consultation->getType()->getNom();
-        $p= $consultation->getPatient();
-        return $this->render('patient/pintbook.html.twig',compact('patient','consultationData','type','p'));
+        $p = $consultation->getPatient();
+        return $this->render('patient/pintbook.html.twig', compact('patient', 'consultationData', 'type', 'p'));
     }
 }

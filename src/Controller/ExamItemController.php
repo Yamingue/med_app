@@ -14,7 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/exam/item')]
 class ExamItemController extends AbstractController
 {
-    #[Route('/', name: 'app_exam_item_index', methods: ['GET'])]
+    #[Route(
+        '/{_locale}',
+        name: 'app_exam_item_index',
+        methods: ['GET'],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index(ExamItemRepository $examItemRepository): Response
     {
         return $this->render('exam_item/index.html.twig', [
@@ -22,7 +27,12 @@ class ExamItemController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_exam_item_new', methods: ['GET', 'POST'])]
+    #[Route(
+        '/new/{_locale}',
+        name: 'app_exam_item_new',
+        methods: ['GET', 'POST'],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $examItem = new ExamItem();

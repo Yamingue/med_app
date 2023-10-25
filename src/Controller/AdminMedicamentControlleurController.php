@@ -14,7 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/medicament/controlleur')]
 class AdminMedicamentControlleurController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_medicament_controlleur_index', methods: ['GET'])]
+    #[Route(
+        '/{_locale}',
+        name: 'app_admin_medicament_controlleur_index',
+        methods: ['GET'],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index(MedicamentRepository $medicamentRepository): Response
     {
         return $this->render('admin_medicament_controlleur/index.html.twig', [
@@ -22,7 +27,12 @@ class AdminMedicamentControlleurController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_medicament_controlleur_new', methods: ['GET', 'POST'])]
+    #[Route(
+        '/new/{_locale}',
+        name: 'app_admin_medicament_controlleur_new',
+        methods: ['GET', 'POST'],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $medicament = new Medicament();
@@ -42,7 +52,12 @@ class AdminMedicamentControlleurController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_medicament_controlleur_show', methods: ['GET'])]
+    #[Route(
+        '/{id}/{_locale}',
+        name: 'app_admin_medicament_controlleur_show',
+        methods: ['GET'],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function show(Medicament $medicament): Response
     {
         return $this->render('admin_medicament_controlleur/show.html.twig', [
@@ -50,7 +65,12 @@ class AdminMedicamentControlleurController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_medicament_controlleur_edit', methods: ['GET', 'POST'])]
+    #[Route(
+        '/{id}/edit/{_locale}',
+        name: 'app_admin_medicament_controlleur_edit',
+        methods: ['GET', 'POST'],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function edit(Request $request, Medicament $medicament, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MedicamentType::class, $medicament);
@@ -68,10 +88,15 @@ class AdminMedicamentControlleurController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_medicament_controlleur_delete', methods: ['POST'])]
+    #[Route(
+        '/{id}/{_locale}',
+        name: 'app_admin_medicament_controlleur_delete',
+        methods: ['POST'],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function delete(Request $request, Medicament $medicament, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$medicament->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $medicament->getId(), $request->request->get('_token'))) {
             $entityManager->remove($medicament);
             $entityManager->flush();
         }

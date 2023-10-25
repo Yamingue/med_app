@@ -16,21 +16,29 @@ class LaboraratoireController extends AbstractController
     {
         $this->manager = $managerRegistry->getManager();
     }
-    #[Route('/index', name: 'laboraratoire_index')]
+    #[Route(
+        '/index/{_locale}',
+        name: 'laboraratoire_index',
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index(): Response
     {
         return $this->render('laboraratoire/index.html.twig', [
             'controller_name' => 'LaboraratoireController',
         ]);
     }
-    #[Route('/exam-{id}/done', name: 'laboraratoire_exam_done')]
+    #[Route(
+        '/exam-{id}/done/{_locale}',
+        name: 'laboraratoire_exam_done',
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
     public function examDone(Exament $exament = null): Response
     {
         if ($exament) {
             $exament->setEtat(true);
             $this->manager->persist($exament);
             $this->manager->flush();
-            $this->addFlash('success','Exament #'.$exament->getId().' effectuer');
+            $this->addFlash('success', 'Exament #' . $exament->getId() . ' effectuer');
         }
         return $this->redirectToRoute('laboraratoire_index');
     }
