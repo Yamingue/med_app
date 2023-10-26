@@ -8,10 +8,10 @@
 
 <div class="row">
   <div class="col-12">
-    {{ component('ChercheExam') }}
+    {{ component('ChercheExam',{locale:app.locale}) }}
   </div>
   <div class="col-12">
-    {{ component('ChercheConsultation') }}
+    {{ component('ChercheConsultation',{localeConsultation:app.locale}) }}
 
     <div class="card mt-2">
       {% if is_granted('ROLE_RECEPTION') %}

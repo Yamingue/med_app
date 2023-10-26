@@ -79,6 +79,7 @@ class MainController extends AbstractController
         return $this->render('main/print_exam.html.twig', [
             'exament' => $exament,
             'referer' => $referer,
+            'payed' => $exament->isIsPayed(),
         ]);
     }
 }

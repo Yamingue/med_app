@@ -148,6 +148,8 @@
                             </div>
                         </a>
                     </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_LABORATOIRE') %}
                     <li
                         class="menu-item {% if 'app_admin_medicament_controlleur' in app.request.get('_route') %}active{% endif %}">
                         <a href="{{path('app_admin_medicament_controlleur_index')}}" class="menu-link">

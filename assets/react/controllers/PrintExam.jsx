@@ -5,7 +5,7 @@ export default function PrintExam(props) {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
-    let { data, examId } = props;
+    let { data, examId, payed = false } = props;
     let [id, setId] = useState(0);
     var [items, setItems] = useState([])
     useEffect(() => {
@@ -19,6 +19,14 @@ export default function PrintExam(props) {
     const mois = dateJS.getUTCMonth() + 1; // Ajoutez 1 car les mois sont indexés à partir de 0
     var annee = dateJS.getUTCFullYear();
     console.log(items)
+    const getTotale = () => {
+        let total = 0;
+        items.forEach(el => {
+            total += el.prix;
+        })
+
+        return total;
+    }
     return <>
         <div className="d-flex justify-content-between">
             <button className='btn btn-primary mb-2' onClick={handlePrint}><i className='bx bx-printer me-2' ></i> Imprimer</button>
@@ -35,6 +43,9 @@ export default function PrintExam(props) {
                     )
                 }
             </ol>
+            <strong>Total: {getTotale()} XFA</strong>
+            <br />
+            {payed ? <strong>Payé</strong> : "Non payé"}
         </div>
 
     </>;

@@ -43,6 +43,7 @@ class UserType extends AbstractType
                     'CONSULTATION' => 'ROLE_CONSULTATION',
                     'UTILISATEUR' => 'ROLE_USER',
                     'RECEPTION' => 'ROLE_RECEPTION',
+                    "PHARMACIE" => 'ROLE_PHARMATIE'
                 ],
                 'attr' => [
                     'class' => 'select2'
@@ -50,7 +51,7 @@ class UserType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'mapped' => false,
-                'required'=> false,
+                'required' => false,
             ]);
     }
 

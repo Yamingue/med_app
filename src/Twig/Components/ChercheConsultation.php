@@ -4,6 +4,7 @@ namespace App\Twig\Components;
 
 use App\Entity\Consultation;
 use App\Repository\ConsultationRepository;
+use Symfony\Component\Translation\LocaleSwitcher;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;

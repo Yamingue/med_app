@@ -35,6 +35,26 @@ class AppFixtures extends Fixture
         $user->setPrenom('Admin');
         $manager->persist($user);
 
+        $pharmace = new User();
+        $pharmace->setUsername('khalil');
+        $pharmace->setPassword('$2y$13$CzjaWc6/VDMNNDLVGMPxQ.tKrnF1JFjKWGUsmkGrurc51zFqbxh.y');
+        $pharmace->setRoles(['ROLE_PHARMATIE']);
+        $pharmace->setGenre('M');
+        $pharmace->setCivilite('Mr');
+        $pharmace->setNom('Kalil');
+        $pharmace->setPrenom('Tahir');
+        $manager->persist($pharmace);
+
+        $reception = new User();
+        $reception->setUsername('abderahim');
+        $reception->setPassword('$2y$13$CzjaWc6/VDMNNDLVGMPxQ.tKrnF1JFjKWGUsmkGrurc51zFqbxh.y');
+        $reception->setRoles(['ROLE_RECEPTION']);
+        $reception->setGenre('M');
+        $reception->setCivilite('Mr');
+        $reception->setNom('abderahim');
+        $reception->setPrenom('Mahadi');
+        $manager->persist($reception);
+
         foreach ($servicesMedical as $s) {
             $service = new Service();
             $service->setNom($s);

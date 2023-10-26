@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     #[Route(
-        path: '/login/{locale}',
+        path: '/login/{_locale}',
         name: 'app_login',
         defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]

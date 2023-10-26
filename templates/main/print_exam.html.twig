@@ -4,6 +4,6 @@
 <a href="{{referer|default('/main')}}" class="btn btn-sm btn-primary mb-2">
     {% trans %}Retour{% endtrans %}
 </a>
-<div {{ react_component('PrintExam',{examId: exament.id,data: exament.itemsToArray|json_encode})}}>
+<div {{ react_component('PrintExam',{ examId: exament.id, data: exament.itemsToArray|json_encode, payed: payed })}}>
 </div>
 {% endblock %}

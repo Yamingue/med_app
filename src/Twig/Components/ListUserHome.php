@@ -17,15 +17,13 @@ final class ListUserHome
 
     public function __construct(private PatientRepository $patientRepository)
     {
-        
     }
 
     public function getPatients()
     {
-        if ( trim($this->query) != '') 
-        {
+        if (trim($this->query) != '') {
             return $this->patientRepository->search($this->query);
         }
-        return $this->patientRepository->findBy([],['id' => 'DESC'], 10);
+        return $this->patientRepository->findBy([], ['id' => 'DESC'], 10);
     }
 }
