@@ -14,7 +14,12 @@ class IndexController extends AbstractController
         defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
-    #[Route('/{_locale}', name: 'app_index', requirements: ["_locale" => "fr|en|ar"])]
+    #[Route(
+        '/{_locale}',
+        defaults: ["_locale" => "ar"],
+        name: 'app_index',
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
     public function index()
     {
         /**@var User */
