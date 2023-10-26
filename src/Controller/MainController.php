@@ -10,6 +10,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
@@ -61,6 +63,38 @@ class MainController extends AbstractController
             $this->addFlash('success', 'examen #' . $exament->getId() . ' has been payed');
         }
         return $this->redirect($request->headers->get('referer'));
+    }
+
+    #[Route(
+        '/main/paye_discount_exam-{id}/{_locale}',
+        name: 'app_main_paye_xam_discount',
+        defaults: ["_locale" => "ar"],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
+    public function payeExamWithDiscount(Exament $exament = null, Request $request)
+    {
+        $form = $this->createFormBuilder()
+            ->add('montant', NumberType::class, [
+                'label' => 'Montant du rabais',
+            ])
+            ->add('Valider', SubmitType::class, [
+                'label' => 'Valider le rabais',
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $montant = $form->get('montant')->getData();
+            $exament->setDiscount($montant);
+            $exament->setIsPayed(true);
+            $this->manager->persist($exament);
+            $this->manager->flush();
+            $this->addFlash('success', 'Rabais effectuer');
+            return $this->redirectToRoute('app_main');
+        }
+        return $this->render('main/discount.html.twig', [
+            'form' => $form->createView(),
+            'exament' => $exament,
+        ]);
     }
 
 

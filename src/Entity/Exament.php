@@ -36,6 +36,9 @@ class Exament
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $paye_at = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $discount = null;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -147,7 +150,7 @@ class Exament
         foreach ($this->items as $item) {
             $total += $item->getPrix();
         }
-        return $total;
+        return $total - $this->discount;
     }
 
     public function getPayeAt(): ?\DateTimeImmutable
@@ -158,6 +161,18 @@ class Exament
     public function setPayeAt(?\DateTimeImmutable $paye_at): static
     {
         $this->paye_at = $paye_at;
+
+        return $this;
+    }
+
+    public function getDiscount(): ?int
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(?int $discount): static
+    {
+        $this->discount = $discount;
 
         return $this;
     }

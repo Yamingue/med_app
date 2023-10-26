@@ -1,0 +1,21 @@
+{% extends "main.html.twig" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-4 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                {% trans %}Examens{% endtrans %}: <br>
+                <ol>
+                    {% for item in exament.items %}
+                    <li>{{ item.nom }} {{item.prix}} XFA</li>
+                    {% endfor %}
+                </ol>
+                {% trans %}Montant total{% endtrans %}: {{ exament.getAmount }} XFA
+                <hr>
+                {{form(form)}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

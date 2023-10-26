@@ -46,11 +46,20 @@
             </p>
             <div class="d-grid gap-2 col-6 mx-auto" style="width: 100%;">
                 {% if is_granted('ROLE_RECEPTION') and (not this.exament.isPayed) %}
-                <a href="{{path('app_main_paye_xam',{id:this.exament.id})}}" class="btn btn-success btn-sm">
-                    {% trans %}
-                    Payer
-                    {% endtrans %}
-                </a>
+                <div class="btn btn-group">
+                    <a href="{{path('app_main_paye_xam',{id:this.exament.id})}}" class="btn btn-success btn-sm">
+                        {% trans %}
+                        Payer
+                        {% endtrans %}
+                    </a>
+                    <a href="{{path('app_main_paye_xam_discount',{id:this.exament.id})}}"
+                        class="btn btn-warning btn-sm">
+                        {% trans %}
+                        Payer avec rabet
+                        {% endtrans %}
+                    </a>
+                </div>
+
                 {% endif %}
                 <a href="{{path('print_exam',{id:this.exament.id})}}" class="btn btn-primary btn-sm">
                     {% trans %}
@@ -82,11 +91,19 @@
                     <h5>ToTal: {{total|number_format(0,'.',' ')}} XFA</h5>
                     <div class="d-grid gap-2 col-6 mx-auto" style="width: 100%;">
                         {% if is_granted('ROLE_RECEPTION') and (not exament.isPayed) %}
-                        <a href="{{path('app_main_paye_xam',{id:exament.id})}}" class="btn btn-success btn-sm">
-                            {% trans %}
-                            Payer
-                            {% endtrans %}
-                        </a>
+                        <div class="btn btn-group">
+                            <a href="{{path('app_main_paye_xam',{id:exament.id})}}" class="btn btn-success btn-sm">
+                                {% trans %}
+                                Payer
+                                {% endtrans %}
+                            </a>
+                            <a href="{{path('app_main_paye_xam_discount',{id:exament.id})}}"
+                                class="btn btn-warning btn-sm">
+                                {% trans %}
+                                Payer avec rabet
+                                {% endtrans %}
+                            </a>
+                        </div>
                         {% endif %}
                         <a href="{{path('print_exam',{id:exament.id})}}" class="btn btn-primary btn-sm">
                             {% trans %}

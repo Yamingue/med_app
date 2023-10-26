@@ -5,7 +5,7 @@ export default function PrintExam(props) {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
-    let { data, examId, payed = false } = props;
+    let { data, examId, payed = false, discount, total } = props;
     let [id, setId] = useState(0);
     var [items, setItems] = useState([])
     useEffect(() => {
@@ -43,9 +43,11 @@ export default function PrintExam(props) {
                     )
                 }
             </ol>
-            <strong>Total: {getTotale()} XFA</strong>
+            Discount: {discount} XFA <br />
+            <strong>Total: {total} XFA</strong>
             <br />
-            {payed ? <strong>Payé</strong> : "Non payé"}
+            {payed ? <strong>Payé</strong> : "Non payé"} <br />
+
         </div>
 
     </>;

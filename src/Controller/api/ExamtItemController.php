@@ -54,6 +54,7 @@ class ExamtItemController extends AbstractController
         $content = json_decode($request->getContent(), true);
         $query = $content['examts'];
         $examt = new Exament();
+        $examt->setDiscount(0);
         $examt->setConsultation($consultation);
         foreach ($query as $item) {
             $examt->addItem($examItemRepository->find($item['id']));
