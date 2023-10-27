@@ -77,7 +77,7 @@ class ConsultationController extends AbstractController
     }
 
     #[Route(
-        '/consultation/{id}/add_exam/{_locle}',
+        '/consultation/{id}/add_exam/{_locale}',
         name: 'consultation_add_exam',
         defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
