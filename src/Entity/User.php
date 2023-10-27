@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields:'username')]
+#[UniqueEntity(fields: 'username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -161,27 +161,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRole(): string
     {
-        if (in_array('ROLE_ADMIN',$this->roles)) {
-            return 'Administrateur';
+        $roles = '';
+        if (in_array('ROLE_ADMIN', $this->roles)) {
+            $roles .= 'Administrateur, ';
         }
-        if (in_array('ROLE_CONSULTATION',$this->roles)) {
-            return 'Consultation';
-        }
-
-        if (in_array('ROLE_LABORATOIRE',$this->roles)) {
-            return 'LABORATOIRE';
+        if (in_array('ROLE_CONSULTATION', $this->roles)) {
+            $roles .= 'Consultation, ';
         }
 
-        if (in_array('ROLE_RECEPTION',$this->roles)) {
-            return 'Acceuille';
+        if (in_array('ROLE_LABORATOIRE', $this->roles)) {
+            $roles .= 'LABORATOIRE, ';
         }
 
-        return 'Utilisateur';
+        if (in_array('ROLE_RECEPTION', $this->roles)) {
+            $roles .= 'Acceuille, ';
+        }
+
+        if (in_array('ROLE_PHARMATIE', $this->roles)) {
+            $roles .= 'PHARMATIE, ';
+        }
+
+        if ($roles == '') {
+            # code...
+            return 'Utilisateur';
+        }
+
+        return $roles;
     }
 
-    public function getInitial() : string
+    public function getInitial(): string
     {
-        $arr=str_split($this->username);
-        return $arr[0].$arr[1];
+        $arr = str_split($this->username);
+        return $arr[0] . $arr[1];
     }
 }

@@ -24,8 +24,14 @@ class IndexController extends AbstractController
     {
         /**@var User */
         $user = $this->getUser();
-        if ($user &&  $user->getRole() == 'LABORATOIRE') {
+        if ($user && in_array('ROLE_LABORATOIRE', $user->getRoles())) {
             return $this->redirectToRoute('laboraratoire_index');
+        }
+        if ($user && in_array('ROLE_PHARMATIE', $user->getRoles())) {
+            return $this->redirectToRoute('app_admin_medicament_controlleur_index');
+        }
+        if ($user && in_array('ROLE_PHARMATIE', $user->getRoles())) {
+            return $this->redirectToRoute('app_admin_medicament_controlleur_index');
         }
         return $this->redirectToRoute('app_main');
     }
