@@ -35,12 +35,15 @@
                         <a href="{{path('patient_detail',{id:patient.id})}}" class="btn btn-icon btn-outline-primary">
                             <i class='tf-icons bx bx-show'></i>
                         </a>
-                        <button type="button" class="btn btn-icon btn-outline-warning">
+                        {# <button type="button" class="btn btn-icon btn-outline-warning">
                             <i class='tf-icons bx bx-edit'></i>
-                        </button>
-                        <button type="button" class="btn btn-icon btn-outline-danger">
+                        </button> #}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{path('patient_remove',{id:patient.id})}}" type="button"
+                            class="btn btn-icon btn-outline-danger">
                             <i class='tf-icons bx bx-trash'></i>
-                        </button>
+                        </a>
+                        {% endif %}
                     </div>
                 </td>
             </tr>

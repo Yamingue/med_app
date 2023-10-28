@@ -30,12 +30,28 @@ class PatientController extends AbstractController
     public function index(): Response
     {
         return $this->render('patient/index.html.twig', [
-            'controller_name' => 'PatientController',
+            'controller_name' => 'Patients',
         ]);
     }
 
     #[Route(
-        '/patient/{id}/{_locale}',
+        '/patient/delete/{_locale}',
+        name: 'patient_remove',
+        defaults: ["_locale" => "ar"],
+        requirements: ["_locale" => "fr|en|ar"]
+    )]
+    public function delete(Patient $patient = null): Response
+    {
+        if ($patient) {
+            $this->manager->remove($patient);
+            $this->manager->flush();
+            $this->addFlash('success', 'Patient supprimer');
+        }
+        return $this->redirectToRoute('app_main');
+    }
+
+    #[Route(
+        '/patient/{id<\d+>}/{_locale}',
         name: 'patient_detail',
         defaults: ["_locale" => "ar"],
         requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
