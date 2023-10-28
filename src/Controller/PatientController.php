@@ -35,13 +35,14 @@ class PatientController extends AbstractController
     }
 
     #[Route(
-        '/patient/delete/{_locale}',
+        '/patient/delete/{id}/{_locale}',
         name: 'patient_remove',
         defaults: ["_locale" => "ar"],
         requirements: ["_locale" => "fr|en|ar"]
     )]
     public function delete(Patient $patient = null): Response
     {
+
         if ($patient) {
             $this->manager->remove($patient);
             $this->manager->flush();
