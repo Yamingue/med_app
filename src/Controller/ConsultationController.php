@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Consultation;
+use App\Entity\Exament;
 use App\Entity\ParametreViteaux;
 use App\Entity\Remarque;
 use App\Form\ParametreVitauxType;
@@ -87,6 +88,38 @@ class ConsultationController extends AbstractController
         return $this->render('consultation/add_exam.html.twig', [
             'consultation' => $consultation,
         ]);
+    }
+
+    #[Route(
+        '/consultation/{id}/remove/{_locale}',
+        name: 'consultation_remove',
+        defaults: ["_locale" => "ar"],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
+    public function remove(Consultation $consultation = null)
+    {
+        if ($consultation) {
+            $patientId = $consultation->getPatient()->getId();
+            $this->manager->remove($consultation);
+            $this->manager->flush();
+            return $this->redirectToRoute('patient_detail', ['id' => $patientId]);
+        }
+        return $this->redirectToRoute('app_main');
+    }
+
+    #[Route(
+        '/exam/{id}/remove/{_locale}',
+        name: 'exam_remove',
+        defaults: ["_locale" => "ar"],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
+    public function remove_exam(Exament $exament = null)
+    {
+        if ($exament) {
+            $this->manager->remove($exament);
+            $this->manager->flush();
+        }
+        return $this->redirectToRoute('app_main');
     }
 
     #[Route(

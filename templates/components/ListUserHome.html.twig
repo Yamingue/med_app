@@ -38,7 +38,7 @@
                         {# <button type="button" class="btn btn-icon btn-outline-warning">
                             <i class='tf-icons bx bx-edit'></i>
                         </button> #}
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECEPTION') %}
                         <a href="{{path('patient_remove',{id:patient.id})}}" type="button"
                             class="btn btn-icon btn-outline-danger">
                             <i class='tf-icons bx bx-trash'></i>

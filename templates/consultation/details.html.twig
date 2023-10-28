@@ -68,7 +68,7 @@
                 <i class="fa-solid fa-microscope me-2"></i>
                 {% trans %}Examents{% endtrans %} ({{examents|length}})
             </button>
-            {% if is_granted('ROLE_CONSULTATION') %}
+            {% if is_granted('ROLE_CONSULTATION') or is_granted('ROLE_RECEPTION') %}
             {# <button data-bs-toggle="modal" data-bs-target="#addExam"
                 class="btn btn-label-primary me-2">Ajouter</button> #}
             <a href="{{path('consultation_add_exam',{id:consultation.id})}}" class="btn btn-label-primary me-2">
@@ -127,6 +127,8 @@
                                         Imprimer
                                         {% endtrans %}
                                     </a>
+                                    <a href="{{path('exam_remove',{id:exament.id})}}" class="btn btn-danger btn-sm">{%
+                                        trans %}Annuler l'exament{% endtrans %}</a>
                                 </div>
 
                             </div>

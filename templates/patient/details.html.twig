@@ -69,6 +69,11 @@
                 <div class="d-grid mt-2">
                     <a href="{{ path('consultation_details',{id:consultation.id}) }}" class="btn btn-primary">{% trans
                         %}Détails{% endtrans %}</a>
+                    <a href="{{path('consultation_remove',{id:consultation.id})}}" class="btn btn-danger btn-sm">
+                        {% trans %}
+                        Annuler la consultation
+                        {% endtrans %}
+                    </a>
                 </div>
             </div>
         </div>
