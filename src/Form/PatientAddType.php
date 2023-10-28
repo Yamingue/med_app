@@ -17,18 +17,19 @@ class PatientAddType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('telephone')
-            ->add('ne_le', DateType::class,[
+            ->add('quartier')
+            ->add('ne_le', DateType::class, [
+                'label' => "Date de naissance",
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['placeholder' => 'JJ-MM-AAAA'],
                 'format' => 'dd-MM-yyyy',
             ])
-            ->add('Ajouter', SubmitType::class,[
-                'attr'=>[
-                    'class'=>'w-100 btn-primary'
+            ->add('Ajouter', SubmitType::class, [
+                'attr' => [
+                    'class' => 'w-100 btn-primary'
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

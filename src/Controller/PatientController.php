@@ -61,6 +61,7 @@ class PatientController extends AbstractController
         return $this->render('patient/details.html.twig', [
             'form' => $form->createView(),
             'consultations' => $consultationRepository->findBy(['patient' => $patient], ['id' => 'DESC']),
+            'patient' => $patient
         ]);
     }
 

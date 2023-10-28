@@ -13,6 +13,7 @@
                 <th>#</th>
                 <th>{% trans %}Nom{% endtrans %}</th>
                 <th>{% trans %}Prenom{% endtrans %}</th>
+                <th>{% trans %}Quartier{% endtrans %}</th>
                 <th>{% trans %}Téléphone{% endtrans %}</th>
                 <th>{% trans %}Date de naissance{% endtrans %}</th>
                 <th>{% trans %}Actions{% endtrans %}</th>
@@ -24,6 +25,7 @@
                 <th scope="row">1</th>
                 <td>{{patient.nom}}</td>
                 <td>{{patient.prenom}}</td>
+                <td>{{patient.quartier}}</td>
                 <td>{{patient.telephone}}</td>
                 <td>
                     {{patient.neLe|date('d-m-Y')}}

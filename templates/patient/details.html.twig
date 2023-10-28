@@ -4,6 +4,14 @@
 
 {% block body %}
 <div class="card mb-2">
+    <div class="card-body">
+        <strong>{% trans %}Nom{% endtrans %}</strong>: {{patient.nom}} <br>
+        <strong>{% trans %}Prenom{% endtrans %}</strong>: {{patient.prenom}}<br>
+        <strong>{% trans %}Quartier{% endtrans %}</strong>: {{patient.quartier}} <br>
+        <strong>{% trans %}Date de naissance{% endtrans %}</strong>: {{patient.neLe|date("d/m/Y")}}<br>
+    </div>
+</div>
+<div class="card mb-2">
     <div class="card-header">
         <h5>{% trans %}Nouvelle Consultation{% endtrans %}</h5>
     </div>

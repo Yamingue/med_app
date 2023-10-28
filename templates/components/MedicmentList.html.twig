@@ -1,0 +1,57 @@
+<div {{ attributes }}>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="input-group ">
+                <span class="input-group-text">
+                    <i class='bx bx-search'></i>
+                </span>
+                <input type="text" data-model="query" class="form-control"
+                    placeholder="{% trans %}Chercher un medicament{% endtrans %}">
+            </div>
+        </div>
+        {#
+        <hr> #}
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans %}Id{% endtrans %}</th>
+                        <th>{% trans %}Nom{% endtrans %}</th>
+                        <th>
+                            {% trans %}Type{% endtrans %}
+                        </th>
+                        <th>{% trans %}actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for medicament in this.getMedicaments %}
+                    <tr>
+                        <td>{{ medicament.id }}</td>
+                        <td>{{ medicament.nom }}</td>
+                        <td>{{ medicament.type }}</td>
+                        <td>
+                            <a class="btn rounded-pill btn-primary text-bold"
+                                href="{{ path('app_admin_medicament_controlleur_show', {'id': medicament.id}) }}">
+                                {% trans %}Voir{% endtrans %}
+                            </a>
+                            <a class="btn rounded-pill btn-warning"
+                                href="{{ path('app_admin_medicament_controlleur_edit', {'id': medicament.id}) }}">
+                                {% trans %}Editer{% endtrans %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">
+                            {% trans %}
+                            no records found
+                            {% endtrans %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

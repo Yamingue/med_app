@@ -42,6 +42,9 @@ class Patient
     #[ORM\OneToMany(mappedBy: 'patient', targetEntity: Consultation::class, orphanRemoval: true)]
     private Collection $consultations;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $quartier = null;
+
     public function __construct()
     {
         $this->consultations = new ArrayCollection();
@@ -144,6 +147,18 @@ class Patient
                 $consultation->setPatient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuartier(): ?string
+    {
+        return $this->quartier;
+    }
+
+    public function setQuartier(?string $quartier): static
+    {
+        $this->quartier = $quartier;
 
         return $this;
     }
