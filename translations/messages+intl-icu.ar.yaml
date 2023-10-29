@@ -74,12 +74,16 @@ Prix: سعر
 "You do not have permission to view this page using the credentials that you have provided while\n        login.": "ليس لديك إذن لعرض هذه الصفحة باستخدام بيانات الاعتماد التي قدمتها أثناء تسجيل الدخول."
 "Please contact your site administrator.": "يرجى الاتصال بمسؤول الموقع."
 "Back to home": "العودة إلى الصفحة الرئيسية"
-Quartier: "حيّ"
+Quartier: حيّ
 "Annuler l'exament": "إلغاء الامتحان"
 "Payer avec rabet": "الدفع مع الرباط"
 "Annuler l'Examens": "إلغاء الامتحانات"
 "Chercher un medicament": "العثور على دواء"
 "Annuler la consultation": "إلغاء التشاور"
 "Montant total": "المبلغ الإجمالي"
-Telephone: "هاتف"
-"JJ-MM-AAAA": "ي ي-مم-آا"
+Telephone: هاتف
+JJ-MM-AAAA: "ي ي-مم-آا"
+Parametres: __Parametres
+"Types de consultation": "أنواع الاستشارة"
+"Types de onsultation": "أنواع الاستشارة"
+"Type de consultation": "أنواع الاستشارة"

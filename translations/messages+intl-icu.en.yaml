@@ -66,7 +66,7 @@ Actions: Actions
 Update: Update
 Prix: Price
 "Information personnel": "Personal information"
-"Mot de passe": "Password"
+"Mot de passe": Password
 "Nouvelle Consultation": "New Consultation"
 "Ajouter un patient": "Add a patient"
 "Nouveau patient": "New patient"
@@ -74,3 +74,14 @@ Prix: Price
 "You do not have permission to view this page using the credentials that you have provided while\n        login.": "You do not have permission to view this page using the credentials that you have provided while\n        login."
 "Please contact your site administrator.": "Please contact your site administrator."
 "Back to home": "Back to home"
+Parametres: Settings
+"Types de consultation": "Types of consultation"
+Quartier: Neighborhood
+"Annuler l'exament": "Cancel the exam"
+"Payer avec rabet": "Pay with discount"
+"Annuler l'Examens": "Annuler l'Examens"
+"Chercher un medicament": "Find a medicine"
+"Annuler la consultation": "Cancel consultation"
+"Types de onsultation": "Types of consultation"
+"Type de consultation": "Types of consultation"
+"Montant total": "Total amount"

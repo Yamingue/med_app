@@ -1,0 +1,25 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Edit Type consultation{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-6 mx-auto">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <a class="btn btn-primary" href="{{ path('app_type_consultation_index') }}">
+                    {% trans %}Retour{% endtrans %}
+                </a>
+
+                {{ include('type_consultation/_delete_form.html.twig') }}
+            </div>
+            <div class="card-body">
+                {{ include('type_consultation/_form.html.twig', {'button_label': 'Update'|trans}) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

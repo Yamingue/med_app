@@ -1,0 +1,23 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}
+{% trans %}Types de onsultation{% endtrans %}
+{% endblock %}
+
+{% block body %}
+<a class="btn btn-primary" href="{{ path('app_type_consultation_index') }}">back to list</a>
+<div class="row">
+    <div class="col-sm-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h1>{% trans %}Type de consultation{% endtrans %}</h1>
+            </div>
+            <div class="card-body">
+                {{ include('type_consultation/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

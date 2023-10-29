@@ -173,6 +173,27 @@
                         </a>
                     </li>
                     {% endif %}
+                    {% if is_granted('ROLE_RECEPTION') %}
+                    <li class="menu-item">
+                        <a href="#" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-cog"></i>
+                            <div class="text-truncate" data-i18n="Logistics">{% trans %}Parametres{% endtrans %}</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{path('app_type_consultation_index')}}" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Dashboard">{% trans %}Types de consultation{%
+                                        endtrans %}</div>
+                                </a>
+                            </li>
+                            {# <li class="menu-item">
+                                <a href="app-logistics-fleet.html" class="menu-link">
+                                    <div class="text-truncate" data-i18n="Fleet">Fleet</div>
+                                </a>
+                            </li> #}
+                        </ul>
+                    </li>
+                    {% endif %}
 
                 </ul>
             </aside>

@@ -1,0 +1,45 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}TypeConsultation index{% endblock %}
+
+{% block body %}
+<h4>{% trans %}Types de consultation{% endtrans %}</h4>
+<a class="btn btn-primary" href="{{ path('app_type_consultation_new') }}">
+    {% trans %}Ajouter{% endtrans %}
+</a>
+<div class="card mt-2">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> {% trans %}Nom {% endtrans %}</th>
+                    <th> {% trans %}actions {% endtrans %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for type_consultation in type_consultations %}
+                <tr>
+                    <td>{{ type_consultation.nom }}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm"
+                            href="{{ path('app_type_consultation_show', {'id': type_consultation.id}) }}">
+                            {% trans %}Voir{% endtrans %}
+                        </a>
+                        <a class="btn btn-sm btn-warning"
+                            href="{{ path('app_type_consultation_edit', {'id': type_consultation.id}) }}">
+                            {% trans %}Editer{% endtrans %}
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}
