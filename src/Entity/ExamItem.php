@@ -31,6 +31,10 @@ class ExamItem
     #[ORM\OneToMany(mappedBy: 'item', targetEntity: ResultatExam::class, orphanRemoval: true)]
     private Collection $resultatExams;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["exam_item_read", "exam_item_write"])]
+    private ?string $normal_value = null;
+
     public function __construct()
     {
         $this->examents = new ArrayCollection();
@@ -119,6 +123,18 @@ class ExamItem
                 $resultatExam->setItem(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNormalValue(): ?string
+    {
+        return $this->normal_value;
+    }
+
+    public function setNormalValue(?string $normal_value): static
+    {
+        $this->normal_value = $normal_value;
 
         return $this;
     }

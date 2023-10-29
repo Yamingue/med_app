@@ -15,6 +15,9 @@
                     {% endfor %}
                 </ol>
             </div>
+            <a href="{{path('laboraratoire_print_result',{id:resultat.id})}}" class="btn btn-primary">
+                {% trans %}Imprimer{% endtrans %}
+            </a>
         </div>
     </div>
     {% endfor %}

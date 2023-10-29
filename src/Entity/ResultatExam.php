@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ResultatExamRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ResultatExamRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -12,6 +13,7 @@ class ResultatExam
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['READ'])]
     private ?int $id = null;
 
     #[ORM\Column]
@@ -19,9 +21,11 @@ class ResultatExam
 
     #[ORM\ManyToOne(inversedBy: 'resultatExams')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['READ'])]
     private ?ExamItem $item = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['READ'])]
     private ?string $valeur = null;
 
     #[ORM\ManyToOne(inversedBy: 'resultatExams')]

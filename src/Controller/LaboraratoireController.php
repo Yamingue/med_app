@@ -70,4 +70,25 @@ class LaboraratoireController extends AbstractController
             'items' => json_encode($content)
         ]);
     }
+
+
+    #[Route(
+        '/exam-{id}/add_print_result/{_locale}',
+        name: 'laboraratoire_print_result',
+        defaults: ["_locale" => "ar"],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
+    public function print_result(Exament $exament = null): Response
+    {
+
+        $results = $this->json($exament->getResultatExams(), context: [
+            AbstractNormalizer::GROUPS => ['READ', 'exam_item_read']
+        ])->getContent();
+
+        return $this->render('laboraratoire/print_result.html.twig', [
+            'exament' => $exament,
+            'results' => $results,
+            "patient" => $exament->getConsultation()->getPatient(),
+        ]);
+    }
 }

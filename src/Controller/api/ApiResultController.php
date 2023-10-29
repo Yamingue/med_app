@@ -32,7 +32,7 @@ class ApiResultController extends AbstractController
     #[Route('/api/result_add/{id}', name: 'api_result_add')]
     public function add(
         Request $request,
-        ExamentRepository $examItemRepository,
+        ExamItemRepository $examItemRepository,
         Exament $exament = null,
     ): JsonResponse {
         $content = json_decode($request->getContent(), true)['items'];

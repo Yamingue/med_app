@@ -1,0 +1,8 @@
+{% extends "main.html.twig" %}
+{% block title %}
+#EX-{{exament.id}}
+{% endblock %}
+{% block body %}
+<a href="{{path('laboraratoire_index')}}" class="btn btn-primary mb-2">{% trans %}Retour{% endtrans %}</a>
+<div {{react_component('PrintExamResult',{data:results,nom:patient.nom,prenom:patient.prenom,id:exament.id})}}></div>
+{% endblock %}

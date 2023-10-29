@@ -5,5 +5,6 @@
 {% block body %}
 {# {{ dump() }} #}
 <h5>Resultat examen <strong> #{{exament.id}}</strong></h5>
-<div {{react_component('AddResulte',{ items: items, id:exament.id, url: path('laboraratoire_index') })}}></div>
+<div {{react_component('AddResulte',{ items: items, id:exament.id, url:
+    path('laboraratoire_print_result',{id:exament.id}) })}}></div>
 {% endblock %}

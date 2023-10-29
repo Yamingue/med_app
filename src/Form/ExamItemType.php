@@ -13,8 +13,8 @@ class ExamItemType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('prix')
-        ;
+            ->add('normal_value')
+            ->add('prix');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
