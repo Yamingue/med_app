@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Patient;
 use App\Entity\Consultation;
+use App\Entity\ResultatExam;
 use App\Form\ConsultationType;
 use App\Repository\ConsultationRepository;
+use App\Repository\ExamentRepository;
+use App\Repository\ResultatExamRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -99,5 +102,24 @@ class PatientController extends AbstractController
         $type = $consultation->getType()->getNom();
         $p = $consultation->getPatient();
         return $this->render('patient/pintbook.html.twig', compact('patient', 'consultationData', 'type', 'p'));
+    }
+
+    #[Route(
+        '/patient/{id<\d+>}/result/{_locale}',
+        name: 'patient_result',
+        defaults: ["_locale" => "ar"],
+        requirements: ['id' => '\d+', "_locale" => "fr|en|ar"]
+    )]
+    public function resultExam(
+        ExamentRepository $examentRepository,
+        Patient $patient = null
+    ): Response {
+        if ($patient == null) {
+            return $this->redirectToRoute('patient');
+        }
+        return $this->render('patient/result_exam.html.twig', [
+            'resultats' => $examentRepository->findByPatient($patient),
+            'patient' => $patient
+        ]);
     }
 }

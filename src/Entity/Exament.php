@@ -39,9 +39,13 @@ class Exament
     #[ORM\Column(nullable: true)]
     private ?int $discount = null;
 
+    #[ORM\OneToMany(mappedBy: 'examen', targetEntity: ResultatExam::class, orphanRemoval: true)]
+    private Collection $resultatExams;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->resultatExams = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,6 +177,36 @@ class Exament
     public function setDiscount(?int $discount): static
     {
         $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ResultatExam>
+     */
+    public function getResultatExams(): Collection
+    {
+        return $this->resultatExams;
+    }
+
+    public function addResultatExam(ResultatExam $resultatExam): static
+    {
+        if (!$this->resultatExams->contains($resultatExam)) {
+            $this->resultatExams->add($resultatExam);
+            $resultatExam->setExamen($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResultatExam(ResultatExam $resultatExam): static
+    {
+        if ($this->resultatExams->removeElement($resultatExam)) {
+            // set the owning side to null (unless already changed)
+            if ($resultatExam->getExamen() === $this) {
+                $resultatExam->setExamen(null);
+            }
+        }
 
         return $this;
     }

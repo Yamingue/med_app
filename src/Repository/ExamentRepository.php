@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Exament;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Patient;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Exament>
@@ -45,6 +46,21 @@ class ExamentRepository extends ServiceEntityRepository
             ->andWhere('e.paye_at like :val')
             ->setParameter('val', '%' . $date_forma . '%')
             ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Exament[] Returns an array of Exament objects
+     */
+    public function findByPatient(
+        Patient $patient
+    ): array {
+
+        $query =  $this->createQueryBuilder('e')
+            ->innerJoin('e.consultation', 'cons')
+            ->where('cons.patient = :val')
+            ->setParameter('val', $patient->getId());
+        return  $query->getQuery()
             ->getResult();
     }
 

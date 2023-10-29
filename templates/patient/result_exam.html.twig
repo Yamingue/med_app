@@ -1,0 +1,22 @@
+{% extends 'main.html.twig' %}
+
+{% block body %}
+<a href="{{path('patient_detail',{id:patient.id})}}" class="btn btn-primary mb-2">{% trans %}Retour{% endtrans %}</a>
+<div class="row">
+    {% for resultat in resultats %}
+    <div class="col-sm-4 mb-2">
+        <div class="card">
+            <div class="card-body">
+                <ol>
+                    {% for r in resultat.resultatExams %}
+                    <li>
+                        {{r.item.nom}} : {{r.valeur}}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

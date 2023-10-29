@@ -40,7 +40,7 @@
         {% if this.exament.etat != true %}
         <div class="card-footer">
             <div class="d-grid gap-2 mx-auto">
-                <a class="btn btn-primary" href="{{path('laboraratoire_exam_done',{id:this.exament.id})}}">
+                <a class="btn btn-primary" href="{{path('laboraratoire_add_result',{id:this.exament.id})}}">
                     {% trans %}Terminer{% endtrans %}
                 </a>
             </div>
@@ -83,7 +83,7 @@
                 {% if exament.etat != true %}
                 <div class="card-footer">
                     <div class="d-grid gap-2 mx-auto">
-                        <a class="btn btn-primary" href="{{path('laboraratoire_exam_done',{id:exament.id})}}">
+                        <a class="btn btn-primary" href="{{path('laboraratoire_add_result',{id:exament.id})}}">
                             {% trans %}Terminer{% endtrans %}
                         </a>
                     </div>
